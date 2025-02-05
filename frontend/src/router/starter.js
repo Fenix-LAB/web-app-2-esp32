@@ -22,7 +22,7 @@ const BackendBoxedImage2 = () => import("@/views/backend-boxed/Image2View.vue");
 const Landing = () => import("@/views/starter/LandingView.vue");
 
 // Backend: Dashboard
-const Dashboard = () => import("@/views/starter/DashboardView.vue");
+const BackendDashboard = () => import("@/views/backend/DashboardView.vue");
 const BackendBlocksForms = () => import("@/views/backend/blocks/FormsView.vue");
 const BackendElementsTypography = () =>
   import("@/views/backend/elements/TypographyView.vue");
@@ -93,7 +93,7 @@ const routes = [
       // {
       //   path: "dashboard",
       //   name: "backend-dashboard",
-      //   component: Dashboard,
+      //   component: BackendDashboard,
       // },
       /*
       |
@@ -103,13 +103,24 @@ const routes = [
       |
       */
       {
-        path: "/map",
+        path: "/dashboard",
         redirect: "/pages/generic/blank",
         children: [
           {
             path: "",
-            name: "backend-boxed-image2",
-            component: BackendBoxedImage2,
+            name: "backend-dashboard",
+            component: BackendDashboard,
+          },
+        ],
+      },
+      {
+        path: "/profile",
+        redirect: "/pages/generic/blank",
+        children: [
+          {
+            path: "",
+            name: "backend-pages-generic-profile",
+            component: BackendPagesGenericProfile,
           },
         ],
       },

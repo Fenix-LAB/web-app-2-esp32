@@ -44,7 +44,7 @@ async function onSubmit() {
   }
 
   // Go to dashboard
-  router.push({ name: "backend-boxed-image2" });
+  router.push({ name: "backend-dashboard" });
 }
 </script>
 

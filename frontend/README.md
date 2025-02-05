@@ -33,3 +33,9 @@ npm run build
 ```sh
 npm run lint
 ```
+
+
+## Views modified
+- layouts/variations/backendstarter
+- views/auth/sigi3view
+- views/backed-boxed/image2view

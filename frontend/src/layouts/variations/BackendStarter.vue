@@ -38,13 +38,9 @@ store.mainContent({ mode: "narrow" });
         <BaseNavigation
           :nodes="[
             {
-              name: 'Phone',
-              heading: true,
-            },
-            {
-              name: 'Map',
-              to: 'backend-boxed-image2',
-              icon: 'si si-map',
+              name: 'Dashboard',
+              to: 'backend-dashboard',
+              icon: 'si si-speedometer',
             },
             {
               name: 'Register',
@@ -115,7 +111,7 @@ store.mainContent({ mode: "narrow" });
     <!-- Footer Content Left -->
     <!-- Using the available v-slot, we can override the default Footer content from layouts/partials/Footer.vue -->
     <template #footer-content-left>
-      <strong>Ford Sentinel</strong>
+      <strong>APP NAME</strong>
       &copy; {{ store.app.copyright }}
     </template>
     <!-- END Footer Content Left -->

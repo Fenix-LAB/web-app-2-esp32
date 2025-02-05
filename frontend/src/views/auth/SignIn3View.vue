@@ -56,7 +56,7 @@ async function onSubmit() {
   localStorage.setItem("user", JSON.stringify(state));
   localStorage.setItem("isAuthenticated", true);
   // Go to dashboard
-  router.push({ name: "backend-boxed-image2" });
+  router.push({ name: "backend-dashboard"});
 }
 </script>
 <style scoped>
@@ -70,7 +70,7 @@ async function onSubmit() {
   <!-- Page Content -->
   <BaseBackground 
   
-  image="/assets/media/photos/ford4.jpg">
+  image="/assets/media/photos/photo36@2x.jpg">
     
     <div class="row g-0 bg-primary-dark-op">
       <!-- Meta Info Section -->
@@ -89,7 +89,7 @@ async function onSubmit() {
               One<span class="fw-normal">UI</span>
             </RouterLink> -->
             <p class="text-white-300 me-xl.8 mt-10 large-text">
-              Welcome to Ford Sentinel!
+              Welcome to APP NAME!
             </p>
           </div>
         </div>

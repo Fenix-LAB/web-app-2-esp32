@@ -18,3 +18,46 @@ To apply the black formatter to the code, you can run the following command:
 ```bash
 black --config .\pyproject.toml .
 ```
+
+## Docker commands
+### Build the image
+```bash
+docker build -t esp32server .
+```
+
+### Run the container
+```bash
+docker run -d -p 8080:8080 esp32server
+```
+
+## Push the image to ECR
+### Create an ECR repository
+
+To create an ECR repository, you can use the AWS Management Console, AWS CLI, or AWS SDKs. You can also use the AWS Management Console to manage your ECR repositories.
+
+Command to create an ECR repository:
+
+```bash
+aws ecr create-repository --repository-name my-repo --profile chris-profile
+```
+
+Autenitcation in ECR:
+
+```bash
+aws ecr get-login-password --region us-east-2 --profile chris-profile | docker login --username AWS --password-stdin 123456789012.dkr.ecr.us-east-1.amazonaws.com
+```
+
+### Push a container image to ECR
+
+To push a container image to ECR, you can use the AWS Management Console, AWS CLI, or AWS SDKs. You can also use Docker CLI to push a container image to ECR.
+
+Command to tag a container image:
+
+```bash
+docker tag my-image:latest 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
+```
+
+Command to push a container image:
+
+```bash
+docker push 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest

@@ -2,14 +2,10 @@ from fastapi import Depends, FastAPI, Request
 from fastapi.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from app.database.populate import create_tables
 from config.logger_config import logger
 
 from config.config import config
 from app.api.api_router import router
-from app.database.session import engine
-from app.database.seeder import seed_database
-from app.database.procedures.stores_procedures import stored_prcedures_populate, drop_procedures
 
 from app.middleware import (
     OneAuthBackend,

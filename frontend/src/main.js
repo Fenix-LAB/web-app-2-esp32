@@ -26,7 +26,7 @@ import OpenLayersMap from "vue3-openlayers";
 const app = createApp(App);
 
 //Base url API
-export const urlAPI = "https://jidknyggjx.us-east-1.awsapprunner.com/api/v1";
+export const urlAPI = "https://x47jueppim.us-east-1.awsapprunner.com/api/";
 
 
 // Register global components

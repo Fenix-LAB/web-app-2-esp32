@@ -44,7 +44,7 @@ aws ecr create-repository --repository-name my-repo --profile chris-profile
 Autenitcation in ECR:
 
 ```bash
-aws ecr get-login-password --region us-east-2 --profile chris-profile | docker login --username AWS --password-stdin 123456789012.dkr.ecr.us-east-1.amazonaws.com
+aws ecr get-login-password --region us-east-1 --profile chris-profile | docker login --username AWS --password-stdin 850995540863.dkr.ecr.us-east-1.amazonaws.com
 ```
 
 ### Push a container image to ECR
@@ -54,10 +54,11 @@ To push a container image to ECR, you can use the AWS Management Console, AWS CL
 Command to tag a container image:
 
 ```bash
-docker tag my-image:latest 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
+docker tag esp32server:latest 850995540863.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
 ```
 
 Command to push a container image:
 
 ```bash
-docker push 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
+docker push 850995540863.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
+```

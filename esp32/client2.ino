@@ -1,10 +1,11 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
+#include <ArduinoJson.h>  // Necesitamos esta librería para crear el cuerpo JSON
 
 const char* ssid = "TuWiFi";           // Reemplaza con tu red WiFi
 const char* password = "TuContraseña"; // Reemplaza con tu contraseña WiFi
 
-const String serverUrl = "http://127.0.0.1:8080/api/send-data"; // Cambia a la URL de tu servidor FastAPI
+const String serverUrl = "https://hjt2crgsem.us-east-1.awsapprunner.com/api/recive-data"; // Cambia a la URL de tu servidor FastAPI
 
 void setup() {
     Serial.begin(115200);
@@ -39,14 +40,21 @@ void sendPostRequest(const String& message) {
     if (WiFi.status() == WL_CONNECTED) {
         HTTPClient http;
 
-        // Configurar la URL y el encabezado
-        String url = serverUrl + "?message=" + message;
-        http.begin(url); // Inicia la conexión HTTP
-        http.addHeader("Accept", "application/json");
+        // Configurar la URL
+        http.begin(serverUrl); // Inicia la conexión HTTP
+        http.addHeader("Content-Type", "application/json");  // Establece el tipo de contenido a JSON
 
-        // Enviar la solicitud POST
+        // Crear el objeto JSON con el campo 'data'
+        StaticJsonDocument<200> doc;
+        doc["data"] = message; // El dato que deseas enviar
+
+        // Serializar el objeto JSON en una cadena
+        String jsonBody;
+        serializeJson(doc, jsonBody);
+
+        // Enviar la solicitud POST con el cuerpo JSON
         Serial.println("[HTTP] Enviando solicitud POST...");
-        int httpResponseCode = http.POST(""); // No se envía cuerpo, solo parámetro en la URL
+        int httpResponseCode = http.POST(jsonBody);  // Enviar el JSON en el cuerpo
 
         // Verificar la respuesta
         if (httpResponseCode > 0) {

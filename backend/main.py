@@ -22,8 +22,8 @@ def main(env: str, debug: bool):
     os.environ["DEBUG"] = str(debug)
     uvicorn.run(
         app="app.server:app",
-        host=config.APP_HOST,
-        port=config.APP_PORT,
+        host="0.0.0.0",
+        port=8080,
         reload=True if config.ENV != "production" else False,
         workers=1,
     )

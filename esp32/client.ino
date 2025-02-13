@@ -59,7 +59,7 @@ void setup() {
 
     // Configurar WebSocket
     Serial.println("[WebSocket] Conectando...");
-    webSocket.begin("tu-servidor-aws.com", 443, "/ws"); // Asegúrate de usar el dominio correcto
+    webSocket.begin("https://hjt2crgsem.us-east-1.awsapprunner.com", 8080, "/ws"); // Asegúrate de usar el dominio correcto
     webSocket.onEvent(webSocketEvent);
 
     // Configurar el pin del LED

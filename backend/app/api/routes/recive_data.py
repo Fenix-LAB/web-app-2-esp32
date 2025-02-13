@@ -7,9 +7,9 @@ router = APIRouter()
 # Definir el modelo de datos esperado
 class DataModel(BaseModel):
     data: str
-S
+
 # Endpoint GET normal
-@router.get("/recive-data")
+@router.post("/recive-data")
 async def send_command(data: DataModel):
     if not data.data:
         raise HTTPException(status_code=400, detail="No se ha recibido ningún dato")

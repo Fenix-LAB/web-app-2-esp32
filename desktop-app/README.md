@@ -34,7 +34,7 @@ python app.py
 ```bash
 pyuic6 -x archivo.ui -o archivo.py
 # Para este caso:
-pyuic5 -x GUI.ui -o gui_design.py
+pyuic5 -x GUI-2.ui -o gui_design.py
 ``` 
 
 ## Abrir Qt Designer

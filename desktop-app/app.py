@@ -21,19 +21,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_cerrar.clicked.connect(self.control_btn_cerrar)
         self.btn_normal.clicked.connect(self.control_btn_normal)
         self.btn_max.clicked.connect(self.control_btn_maximizar)
-        self.btn_45_grd.clicked.connect(self.set_45_degrees)
-        self.btn_55_grd.clicked.connect(self.set_55_degrees)
-        self.btn_boca_cerrada.clicked.connect(self.set_0_degrees)
-        self.btn_guardar.clicked.connect(self.guardar_datos)
+        # self.btn_45_grd.clicked.connect(self.set_45_degrees)
+        # self.btn_55_grd.clicked.connect(self.set_55_degrees)
+        # self.btn_boca_cerrada.clicked.connect(self.set_0_degrees)
+        # self.btn_guardar.clicked.connect(self.guardar_datos)
 
-        self.status_dientes = {
-            "ps1": False,
-            "ms1": False,
-            "ps2": False,
-            "ms2": False,
-            "ps3": False,
-            "ms3": False
-        }
 
         # Se elimina la barra de titulo por default
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -59,136 +51,67 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.serial.readyRead.connect(self.read_data)
         self.read_ports()
 
-    def set_55_degrees(self):
-        """
-        Metodo para enviar la imagen de la boca a 55 grados
-        """
-        self.img_boca.setPixmap(QPixmap("images/boca_55.png"))
-        self.send_data("55")
-        # self.simulate_cambio_dientes()
+        self.set_progressbar_2_zero()
+        self.disable_all_start_buttons()
+        self.disable_save_button()
 
-    def set_0_degrees(self):
+    def set_progressbar_2_zero(self):
         """
-        Metodo para enviar la imagen de la boca a 0 grados
-        """
-        self.img_boca.setPixmap(QPixmap("images/bocs_cerrada.png"))
-        self.send_data("0")
-
-    def set_45_degrees(self):
-        """
-        Metodo para enviar la imagen de la boca a 45 grados
-        """
-        self.img_boca.setPixmap(QPixmap("images/bocs_45.png"))
-        self.send_data("45")
-
-
-    def change_diente_status(self, sensor: str , status: bool) -> dict:
-        """
-        El color del diente cambia dependiendo del estado del sensor
+        Metodo para poner en 0 todas las barras de progreso
         
-        Args:
-            sensor (str): Nombre del sensor (ps1, ms1, ps2, ms2, ps3, ms3)
-            status (bool): Estado del sensor (True: para color verde, False: color blanco)
         """
-        # Se cambia el color del diente
-        print(f"change {sensor} a {status}")
-        if sensor == "ps1":
-            if status:
-                self.pre_sensor_1.setPixmap(QPixmap("images/premolar_verde.png"))
-            else:
-                self.pre_sensor_1.setPixmap(QPixmap("images/premolar_blanco.png"))
+        self.prog_1.setValue(0)
+        self.prog_2.setValue(0)
+        self.prog_3.setValue(0)
+        self.prog_4.setValue(0)
+        self.prog_5.setValue(0)
 
-        if sensor == "ms1":
-            if status:
-                self.mo_sensor_1.setPixmap(QPixmap("images/molar_verde.png"))
-            else:
-                self.mo_sensor_1.setPixmap(QPixmap("images/molar_blanco.png"))
-
-        if sensor == "ps2":
-            if status:
-                self.pre_sensor_2.setPixmap(QPixmap("images/premolar_verde.png"))
-            else:
-                self.pre_sensor_2.setPixmap(QPixmap("images/premolar_blanco.png"))
-
-        if sensor == "ms2":
-            if status:
-                self.mo_sensor_2.setPixmap(QPixmap("images/molar_verde.png"))
-            else:
-                self.mo_sensor_2.setPixmap(QPixmap("images/molar_blanco.png"))
-
-        if sensor == "ps3":
-            if status:
-                self.pre_sensor_3.setPixmap(QPixmap("images/premolar_verde.png"))
-            else:
-                self.pre_sensor_3.setPixmap(QPixmap("images/premolar_blanco.png"))
-
-        if sensor == "ms3":
-            if status:
-                self.mo_sensor_3.setPixmap(QPixmap("images/molar_verde.png"))
-            else:
-                self.mo_sensor_3.setPixmap(QPixmap("images/molar_blanco.png"))
-
-        # Return actual status de los sensores
-        self.status_dientes[sensor] = status
-        print('done')
-        # print(self.status_dientes)
-        return self.status_dientes
+    def disable_all_start_buttons(self):
+        """
+        Metodo para deshabilitar todos los botones de inicio
         
-
-    def simulate_cambio_dientes(self):  
         """
-        Metodo para simular el cambio de estado de los sensores
+        style_grayed_out = """QPushButton{
+        background-color: rgb(84,111,150);
+        }
+        QPushButton:hover{
+        background-color: rgb(84,111,150);
+        }
         """
-        self.change_diente_status("ps1", not self.status_dientes["ps1"])
-        self.change_diente_status("ms1", not self.status_dientes["ms1"])
-        self.change_diente_status("ps2", not self.status_dientes["ps2"])
-        self.change_diente_status("ms2", not self.status_dientes["ms2"])
-        self.change_diente_status("ps3", not self.status_dientes["ps3"])
-        self.change_diente_status("ms3", not self.status_dientes["ms3"])
 
-    def guardar_datos(self):
+        self.btn_iniciar_1.setEnabled(False)
+        self.btn_iniciar_2.setEnabled(False)
+        self.btn_iniciar_3.setEnabled(False)
+        self.btn_iniciar_4.setEnabled(False)
+        self.btn_iniciar_5.setEnabled(False)
+
+        # Now change style to grayed out
+        self.btn_iniciar_1.setStyleSheet(style_grayed_out)
+        self.btn_iniciar_2.setStyleSheet(style_grayed_out)
+        self.btn_iniciar_3.setStyleSheet(style_grayed_out)
+        self.btn_iniciar_4.setStyleSheet(style_grayed_out)
+        self.btn_iniciar_5.setStyleSheet(style_grayed_out)
+    
+    def disable_save_button(self):
         """
-        Metodo para guardar los datos de los sensores en la tabla y generar un excel
+        Metodo para deshabilitar el boton de guardar
+        
         """
-        # Se obtiene la fecha y hora actual
-        fecha = time.strftime("%d-%m-%Y")
-        hora = time.strftime("%H-%M-%S")
-        nombre = self.line_nombre.text()
-        matricula = self.line_matricula.text()
-        # Se crea el nombre del archivo
-        # nombre_archivo = f"datos_sensores_{fecha}_{hora}.csv"
+        style_grayed_out = """QPushButton{
+        background-color: rgb(84,111,150);
+        }
+        QPushButton:hover{
+        background-color: rgb(84,111,150);
+        }
+        """
 
-        # Se crea el archivo
-
-        # Guardar en la tabla
-        # self.table_datos.setRowCount(0)
-        self.table_datos.insertRow(0)
-        self.table_datos.setItem(0, 0, QtWidgets.QTableWidgetItem(nombre))
-        self.table_datos.setItem(0, 1, QtWidgets.QTableWidgetItem(matricula))
-        self.table_datos.setItem(0, 2, QtWidgets.QTableWidgetItem(str(self.status_dientes["ps1"])))
-        self.table_datos.setItem(0, 3, QtWidgets.QTableWidgetItem(str(self.status_dientes["ms1"])))
-        self.table_datos.setItem(0, 4, QtWidgets.QTableWidgetItem(str(self.status_dientes["ps2"])))
-        self.table_datos.setItem(0, 5, QtWidgets.QTableWidgetItem(str(self.status_dientes["ms2"])))
-        self.table_datos.setItem(0, 6, QtWidgets.QTableWidgetItem(str(self.status_dientes["ps3"])))
-        self.table_datos.setItem(0, 7, QtWidgets.QTableWidgetItem(str(self.status_dientes["ms3"])))
-        self.table_datos.setItem(0, 8, QtWidgets.QTableWidgetItem(fecha))
-        self.table_datos.setItem(0, 9, QtWidgets.QTableWidgetItem(hora))
+        self.btn_guardar.setEnabled(False)
+        self.btn_guardar.setStyleSheet(style_grayed_out)
 
     def read_data(self):
         """
         Metodo para leer los datos enviados por el microcontrolador
-        El microcontrolador envia los datos de los sensores en el siguiente formato:
-        psa:1,psb:1,psc:1,msa:1,msb:1,msc:1
-
-        Donde:
-        psa1: Estado del sensor pre_sensor_1 1: activo, 0: inactivo
-        psb1: Estado del sensor pre_sensor_2 1: activo, 0: inactivo
-        psc1: Estado del sensor pre_sensor_3 1: activo, 0: inactivo
-        msa1: Estado del sensor mo_sensor_1 1: activo, 0: inactivo
-        msb1: Estado del sensor mo_sensor_2 1: activo, 0: inactivo
-        msc1: Estado del sensor mo_sensor_3 1: activo, 0: inactivo
-
-        Favor de costruir el microcontrolador con este formato de envio de datos
+        
         """
         if not self.serial.canReadLine(): return
         rx = self.serial.readLine()

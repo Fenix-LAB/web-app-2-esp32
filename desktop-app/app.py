@@ -3,6 +3,24 @@ from PyQt5.QtCore import *                                    # Modulo PyQt5 par
 from gui_design import *
 from PyQt5.QtGui import *
 import time
+from datetime import datetime
+import csv
+
+class ProgressBarThread(QThread):
+    update_progress = pyqtSignal(int)  # Señal para actualizar la barra de progreso
+
+    def __init__(self, progress_bar, stop_condition):
+        super().__init__()
+        self.progress_bar = progress_bar
+        self.stop_condition = stop_condition
+
+    def run(self):
+        for i in range(100):
+            if self.stop_condition():  # Verifica si se debe detener el progreso
+                self.update_progress.emit(100)  # Lleva la barra al 100% si se detiene
+                break
+            self.update_progress.emit(i)  # Actualiza la barra de progreso
+            self.msleep(50)  # Espera 50 ms (equivalente a time.sleep(0.05))
 
 #Clase de la ventana heredada de la interfaz "gui_design.py"
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -10,6 +28,15 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.setupUi(self)
+
+        self.stage_1 = False
+        self.stage_2 = False
+        self.stage_3 = False
+        self.stage_4 = False
+        self.stage_5 = False
+        self.file_name = None
+        self.save_button = False
+        self.file_name = f"data_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv"
 
         # Usamos la funcion QPoint() para guardar la posicion del mouse
         self.click_position = QPoint()
@@ -21,10 +48,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_cerrar.clicked.connect(self.control_btn_cerrar)
         self.btn_normal.clicked.connect(self.control_btn_normal)
         self.btn_max.clicked.connect(self.control_btn_maximizar)
-        # self.btn_45_grd.clicked.connect(self.set_45_degrees)
-        # self.btn_55_grd.clicked.connect(self.set_55_degrees)
-        # self.btn_boca_cerrada.clicked.connect(self.set_0_degrees)
-        # self.btn_guardar.clicked.connect(self.guardar_datos)
+        self.btn_iniciar_1.clicked.connect(self.start_stage_1)
+        self.btn_iniciar_2.clicked.connect(self.start_stage_2)
+        self.btn_iniciar_3.clicked.connect(self.start_stage_3)
+        self.btn_iniciar_4.clicked.connect(self.start_stage_4)
+        self.btn_iniciar_5.clicked.connect(self.start_stage_5)
 
 
         # Se elimina la barra de titulo por default
@@ -54,6 +82,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.set_progressbar_2_zero()
         self.disable_all_start_buttons()
         self.disable_save_button()
+
+        # enable first button
+        self.enable_button(self.btn_iniciar_1)
 
     def set_progressbar_2_zero(self):
         """
@@ -108,6 +139,257 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_guardar.setEnabled(False)
         self.btn_guardar.setStyleSheet(style_grayed_out)
 
+    def enable_button(self, button):
+        """
+        Metodo para habilitar el boton de inicio
+        
+        """
+        style = """QPushButton{
+        background-color: rgb(84,111,236);
+        }
+        QPushButton:hover{
+        background-color: rgb(39,74,233);
+        }
+        """
+
+        button.setEnabled(True)
+        button.setStyleSheet(style)
+
+    def disable_button(self, button):
+        """
+        Metodo para deshabilitar el boton de inicio
+        
+        """
+        style_grayed_out = """QPushButton{
+        background-color: rgb(84,111,150);
+        }
+        QPushButton:hover{
+        background-color: rgb(84,111,150);
+        }
+        """
+
+        button.setEnabled(False)
+        button.setStyleSheet(style_grayed_out)
+
+    def change_button_text(self, button, text):
+        """
+        Metodo para cambiar el texto del boton
+        
+        """
+        button.setText(text)
+
+    def start_stage_1(self):
+        """
+        Metodo para iniciar la captura de datos
+        
+        """
+        self.stage_1 = True
+        self.enable_button(self.btn_iniciar_2)
+        self.disable_button(self.btn_iniciar_1)
+        self.change_button_text(self.btn_iniciar_1, "...")
+        self.start_progressbar_1()
+
+        self.start_time_stage1 = datetime.now()
+
+        self.create_csv()
+
+
+    def start_stage_2(self):
+        """
+        Metodo para iniciar la captura de datos
+        
+        """
+        self.stage_2 = True
+        self.enable_button(self.btn_iniciar_3)
+        # self.start_progressbar_2()
+        self.disable_button(self.btn_iniciar_2)
+        self.change_button_text(self.btn_iniciar_1, "Listo")
+        self.change_button_text(self.btn_iniciar_2, "...")
+        self.start_progressbar_2()
+
+        self.start_time_stage2 = datetime.now()
+
+    def start_stage_3(self):
+        """
+        Metodo para iniciar la captura de datos
+        
+        """
+        self.stage_3 = True
+        self.enable_button(self.btn_iniciar_4)
+        self.disable_button(self.btn_iniciar_3)
+        self.change_button_text(self.btn_iniciar_2, "Listo")
+        self.change_button_text(self.btn_iniciar_3, "...")
+        self.start_progressbar_3()
+
+        self.start_time_stage3 = datetime.now()
+
+    def start_stage_4(self):
+        """
+        Metodo para iniciar la captura de datos
+        
+        """
+        self.stage_4 = True
+        self.enable_button(self.btn_iniciar_5)
+        self.disable_button(self.btn_iniciar_4)
+        self.change_button_text(self.btn_iniciar_3, "Listo")
+        self.change_button_text(self.btn_iniciar_4, "...")
+        self.start_progressbar_4()
+
+        self.start_time_stage4 = datetime.now()
+
+    def start_stage_5(self):
+        """
+        Metodo para iniciar la captura de datos
+        
+        """
+        self.stage_5 = True
+        self.enable_button(self.btn_guardar)
+        self.disable_button(self.btn_iniciar_5)
+        self.change_button_text(self.btn_iniciar_4, "Listo")
+        self.change_button_text(self.btn_iniciar_5, "...")
+        self.start_progressbar_5()
+
+        self.start_time_stage5 = datetime.now()
+
+
+    def start_progressbar_1(self):
+        """
+        Metodo para iniciar la barra de progreso
+        Solo es visual, la barra de progreso no tiene ninguna funcion
+        Avanzara de de forma constante hasta llegar al 100%
+        Si se presiona el siguiente boton de inicio, la barra de progreso llegara el 100%
+        
+        """
+        self.prog_1.setValue(0)
+        self.progress_thread_1 = ProgressBarThread(self.prog_1, lambda: self.stage_2)
+        self.progress_thread_1.update_progress.connect(self.prog_1.setValue)
+        self.progress_thread_1.start()
+
+    def start_progressbar_2(self):
+        """
+        Metodo para iniciar la barra de progreso
+        """
+
+        self.prog_2.setValue(0)
+        
+        self.progress_thread_2 = ProgressBarThread(self.prog_2, lambda: self.stage_3)
+        self.progress_thread_2.update_progress.connect(self.prog_2.setValue)
+        self.progress_thread_2.start()
+
+    def start_progressbar_3(self):
+        """
+        Metodo para iniciar la barra de progreso
+        """
+
+        self.prog_3.setValue(0)
+        
+        self.progress_thread_3 = ProgressBarThread(self.prog_3, lambda: self.stage_4)
+        self.progress_thread_3.update_progress.connect(self.prog_3.setValue)
+        self.progress_thread_3.start()
+
+    def start_progressbar_4(self):
+        """
+        Metodo para iniciar la barra de progreso
+        """
+
+        self.prog_4.setValue(0)
+        
+        self.progress_thread_4 = ProgressBarThread(self.prog_4, lambda: self.stage_5)
+        self.progress_thread_4.update_progress.connect(self.prog_4.setValue)
+        self.progress_thread_4.start()
+    
+    def start_progressbar_5(self):
+        """
+        Metodo para iniciar la barra de progreso
+        """
+
+        self.prog_5.setValue(0)
+        
+        self.progress_thread_5 = ProgressBarThread(self.prog_5, lambda: self.save_button)
+        self.progress_thread_5.update_progress.connect(self.prog_5.setValue)
+        self.progress_thread_5.start()
+
+
+    def save_button_clicked(self):
+        """
+        Metodo para guardar los datos en un archivo CSV
+        """
+
+        self.save_button = True
+        self.change_button_text(self.btn_iniciar_5, "Listo")
+        self.change_button_text(self.btn_guardar, "Guardando...")
+        
+        self.create_end_csv()
+        self.change_button_text(self.btn_guardar, "Guardado")
+            
+    # ============================ Capturar en CSV ============================
+    def create_csv(self):
+        """
+        Metodo para crear un archivo CSV
+        Y escribir la cabecera
+        """
+        cabecera_l1 = ["Archivo de datos del dia ", datetime.now().strftime('%Y-%m-%d')]
+        cabecera_l2 = ["Etapa", "Fecha", "Hora", "Temperatura_1", "Temperatura_2", "Humedad_1"]
+
+        with open(self.file_name, mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(cabecera_l1)
+            writer.writerow(cabecera_l2)
+            writer.writerow(["Temperatura_1", "Temperatura_2", "Humedad_1"])
+        print(f"Archivo {self.file_name} creado")
+
+    # Metodo para guardar los datos en un archivo CSV
+    def save_data(self, data):
+        """
+        Metodo para guardar los datos en un archivo CSV
+        Se guardan al final de la lista
+        
+        """
+        
+        with open(self.file_name, mode='a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(data)
+        print(f"Datos guardados en {self.file_name}")
+
+    def create_end_csv(self):
+        """
+        Metodo para colocar el resumen de los datos en el archivo CSV
+        """
+
+        self.tiempo_total = datetime.now() - self.start_time_stage1
+        self.tiempo_1 = self.start_time_stage2 - self.start_time_stage1
+        self.tiempo_2 = self.start_time_stage3 - self.start_time_stage2
+        self.tiempo_3 = self.start_time_stage4 - self.start_time_stage3
+        self.tiempo_4 = self.start_time_stage5 - self.start_time_stage4
+        self.tiempo_5 = datetime.now() - self.start_time_stage5
+
+        # Se crea el resumen de los datos
+
+        resumen = ["Resumen de datos"]
+        l1 = [f"Tiempo total: {self.tiempo_total}"]
+        l2 = [f"Tiempo etapa 1: {self.tiempo_1}"]
+        l3 = [f"Tiempo etapa 2: {self.tiempo_2}"]
+        l4 = [f"Tiempo etapa 3: {self.tiempo_3}"]
+        l5 = [f"Tiempo etapa 4: {self.tiempo_4}"]
+        l6 = [f"Tiempo etapa 5: {self.tiempo_5}"]
+
+        with open(self.file_name, mode='a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(resumen)
+            writer.writerow(l1)
+            writer.writerow(l2)
+            writer.writerow(l3)
+            writer.writerow(l4)
+            writer.writerow(l5)
+            writer.writerow(l6)
+        print(f"Resumen guardado en
+        {self.file_name}")
+
+
+
+    # ============================ SERIAL ============================
+     # Metodo para leer los datos enviados por el microcontrolador
+
     def read_data(self):
         """
         Metodo para leer los datos enviados por el microcontrolador
@@ -118,19 +400,23 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         datos = str(rx, 'utf-8').strip()
 
         # La data debe venir en el siguiente formato:
-        # psa:1,psb:0,psc:1,msa:0,msb:1,msc:0
+
+        # 13,15,8
 
         print(f"Datos (solo para debug): {datos}")
 
-        # Se separan los datos
-        for data in datos.split(","):
-            data = data.split(":")
-            sensor = data[0]
-            status = data[1]
-            self.change_diente_status(sensor, bool(int(status)))
+        # Se parsean los datos
+        datos = datos.split(",")
 
+        temperatura_1 = int(datos[0])
+        temperatura_2 = int(datos[1])
+        humedad_1 = int(datos[2])
+
+        # Se guardan los datos en un archivo CSV
+
+        
        
-
+    # ============================ INTERFAZ ============================
     # Metodo del boton de menu
     def mover_menu(self):
         if True:

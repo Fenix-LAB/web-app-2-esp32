@@ -53,6 +53,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_iniciar_3.clicked.connect(self.start_stage_3)
         self.btn_iniciar_4.clicked.connect(self.start_stage_4)
         self.btn_iniciar_5.clicked.connect(self.start_stage_5)
+        self.btn_guardar.clicked.connect(self.save_button_clicked)
 
 
         # Se elimina la barra de titulo por default
@@ -321,6 +322,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.create_end_csv()
         self.change_button_text(self.btn_guardar, "Guardado")
+
+        self.disable_save_button()
             
     # ============================ Capturar en CSV ============================
     def create_csv(self):
@@ -328,14 +331,13 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Metodo para crear un archivo CSV
         Y escribir la cabecera
         """
-        cabecera_l1 = ["Archivo de datos del dia ", datetime.now().strftime('%Y-%m-%d')]
+        cabecera_l1 = ["Archivo de datos del dia ", datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S')]
         cabecera_l2 = ["Etapa", "Fecha", "Hora", "Temperatura_1", "Temperatura_2", "Humedad_1"]
 
         with open(self.file_name, mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(cabecera_l1)
             writer.writerow(cabecera_l2)
-            writer.writerow(["Temperatura_1", "Temperatura_2", "Humedad_1"])
         print(f"Archivo {self.file_name} creado")
 
     # Metodo para guardar los datos en un archivo CSV
@@ -350,6 +352,26 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             writer = csv.writer(file)
             writer.writerow(data)
         print(f"Datos guardados en {self.file_name}")
+
+    def get_comments(self):
+        """
+        Metodo para obtener los comentarios del text edit
+        Se guardan al final de la lista
+        """
+
+        comentarios = self.text_cometarios.toPlainText()
+        print(comentarios)
+        return comentarios
+    
+    def get_name_and_type(self):
+        """
+        Metodo para obtener el nombre y tipo de la muestra line text
+        Se guardan al final de la lista
+        """
+
+        nombre = self.line_cafe.text()
+        tipo = self.line_tipo.text()
+        return nombre, tipo
 
     def create_end_csv(self):
         """
@@ -366,12 +388,19 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # Se crea el resumen de los datos
 
         resumen = ["Resumen de datos"]
-        l1 = [f"Tiempo total: {self.tiempo_total}"]
-        l2 = [f"Tiempo etapa 1: {self.tiempo_1}"]
-        l3 = [f"Tiempo etapa 2: {self.tiempo_2}"]
-        l4 = [f"Tiempo etapa 3: {self.tiempo_3}"]
-        l5 = [f"Tiempo etapa 4: {self.tiempo_4}"]
-        l6 = [f"Tiempo etapa 5: {self.tiempo_5}"]
+        name, tipo = self.get_name_and_type()
+        comentarios = self.get_comments()
+        resumen.append(f"Nombre: {name}")
+        resumen.append(f"Tipo: {tipo}")
+        resumen.append(f"Comentarios: {comentarios}")
+
+        l1 = ["Tiempo total: ", self.tiempo_total]
+        l2 = ["Tiempo etapa 1: ", self.tiempo_1]
+        l3 = ["Tiempo etapa 2: ", self.tiempo_2]
+        l4 = ["Tiempo etapa 3: ", self.tiempo_3]
+        l5 = ["Tiempo etapa 4: ", self.tiempo_4]
+        l6 = ["Tiempo etapa 5: ", self.tiempo_5]
+
 
         with open(self.file_name, mode='a', newline='') as file:
             writer = csv.writer(file)
@@ -382,11 +411,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             writer.writerow(l4)
             writer.writerow(l5)
             writer.writerow(l6)
-        print(f"Resumen guardado en
-        {self.file_name}")
-
-
-
+        print(f"Resumen guardado en {self.file_name}")
     # ============================ SERIAL ============================
      # Metodo para leer los datos enviados por el microcontrolador
 
@@ -413,6 +438,14 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         humedad_1 = int(datos[2])
 
         # Se guardan los datos en un archivo CSV
+
+        current_stage = [self.stage_1, self.stage_2, self.stage_3, self.stage_4, self.stage_5]
+        current_stage_index = current_stage.index(True) + 1
+        data = [current_stage_index, datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1]
+        self.save_data(data)
+        # Se muestran los datos en la las graficas
+
+
 
         
        

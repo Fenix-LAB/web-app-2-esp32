@@ -5,6 +5,8 @@ from PyQt5.QtGui import *
 import time
 from datetime import datetime
 import csv
+import pyqtgraph as pg
+import numpy as np
 
 class ProgressBarThread(QThread):
     update_progress = pyqtSignal(int)  # Señal para actualizar la barra de progreso
@@ -75,6 +77,32 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_actualizar.clicked.connect(self.read_ports)
         self.btn_conectar.clicked.connect(self.serial_conect)
         self.btn_desconectar.clicked.connect(lambda: self.serial.close())
+
+        # Graficas
+        self.t1_x = list(np.linspace(0, 50, 50))
+        self.t1_y = list(np.linspace(0, 0, 50))
+
+        self.t2_x = list(np.linspace(0, 50, 50))
+        self.t2_y = list(np.linspace(0, 0, 50))
+
+        self.h1_x = list(np.linspace(0, 50, 50))
+        self.h1_y = list(np.linspace(0, 0, 50))
+
+        # Creacion de la grafica 1
+        pg.setConfigOption('background', '#ebfeff')
+        pg.setConfigOption('foreground', '#000000')
+        self.plt = pg.PlotWidget(title='Temperatura 1')
+        self.graph_1.addWidget(self.plt)
+
+        pg.setConfigOption('background', '#ebfeff')
+        pg.setConfigOption('foreground', '#000000')
+        self.plt2 = pg.PlotWidget(title='Temperatura 2')
+        self.graph_2.addWidget(self.plt2)
+
+        pg.setConfigOption('background', '#ebfeff')
+        pg.setConfigOption('foreground', '#000000')
+        self.plt3 = pg.PlotWidget(title='Humedad 1')
+        self.graph_3.addWidget(self.plt3)
 
         # Asociacion de metodos
         self.serial.readyRead.connect(self.read_data)
@@ -324,6 +352,25 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.change_button_text(self.btn_guardar, "Guardado")
 
         self.disable_save_button()
+
+    def reset_all(self):
+        """
+        Metodo para reiniciar todas las variables
+        
+        """
+        self.stage_1 = False
+        self.stage_2 = False
+        self.stage_3 = False
+        self.stage_4 = False
+        self.stage_5 = False
+        self.save_button = False
+
+        self.set_progressbar_2_zero()
+        self.disable_all_start_buttons()
+        self.disable_save_button()
+
+        # enable first button
+        self.enable_button(self.btn_iniciar_1)
             
     # ============================ Capturar en CSV ============================
     def create_csv(self):
@@ -401,7 +448,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         l5 = ["Tiempo etapa 4: ", self.tiempo_4]
         l6 = ["Tiempo etapa 5: ", self.tiempo_5]
 
-
         with open(self.file_name, mode='a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(resumen)
@@ -412,6 +458,12 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             writer.writerow(l5)
             writer.writerow(l6)
         print(f"Resumen guardado en {self.file_name}")
+
+        time.sleep(3)
+
+        self.reset_all()
+
+        print("Fin de la captura de datos, reiniciando...")
     # ============================ SERIAL ============================
      # Metodo para leer los datos enviados por el microcontrolador
 
@@ -444,9 +496,46 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         data = [current_stage_index, datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1]
         self.save_data(data)
         # Se muestran los datos en la las graficas
+        self.graph_temperatura_1(temperatura_1)
+        self.graph_temperatura_2(temperatura_2)
+        self.graph_humedad_1(humedad_1)
 
 
 
+    # ============================ GRAFICAS ============================
+    # Metodo para mostrar los datos en la grafica
+    def graph_temperatura_1(self, temperatura_1):
+        """
+        Metodo para mostrar los datos en la grafica
+        
+        """
+        self.t1_y = self.y[1:]
+        self.t1_y.append(temperatura_1)
+
+        self.plt.clear()
+        self.plt.plot(self.t1_x, self.t1_y, pen=pg.mkPen('#1300FF', width=2))
+
+    def graph_temperatura_2(self, temperatura_2):
+        """
+        Metodo para mostrar los datos en la grafica
+        
+        """
+        self.t2_y = self.y[1:]
+        self.t2_y.append(temperatura_2)
+
+        self.plt2.clear()
+        self.plt2.plot(self.t2_x, self.t2_y, pen=pg.mkPen('#1300FF', width=2))
+
+    def graph_humedad_1(self, humedad_1):
+        """
+        Metodo para mostrar los datos en la grafica
+        
+        """
+        self.h1_y = self.y[1:]
+        self.h1_y.append(humedad_1)
+
+        self.plt3.clear()
+        self.plt3.plot(self.h1_x, self.h1_y, pen=pg.mkPen('#1300FF', width=2))
         
        
     # ============================ INTERFAZ ============================

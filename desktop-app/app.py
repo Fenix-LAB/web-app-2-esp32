@@ -45,11 +45,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # self.btn_menu.clicked.connect(self.mover_menu)
 
         # Se configura la ventana asociando los eventos con metodos
-        self.btn_normal.hide()
+        # self.btn_normal.hide()
         self.btn_min.clicked.connect(lambda: self.showMinimized())
         self.btn_cerrar.clicked.connect(self.control_btn_cerrar)
-        self.btn_normal.clicked.connect(self.control_btn_normal)
-        self.btn_max.clicked.connect(self.control_btn_maximizar)
+        # self.btn_normal.clicked.connect(self.control_btn_normal)
+        # self.btn_max.clicked.connect(self.control_btn_maximizar)
         self.btn_iniciar_1.clicked.connect(self.start_stage_1)
         self.btn_iniciar_2.clicked.connect(self.start_stage_2)
         self.btn_iniciar_3.clicked.connect(self.start_stage_3)
@@ -586,16 +586,16 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.label.clear()
 
     # Metodo del boton de ventana normal
-    def control_btn_normal(self):
-        self.showNormal()
-        self.btn_normal.hide()
-        self.btn_max.show()
+    # def control_btn_normal(self):
+    #     self.showNormal()
+    #     self.btn_normal.hide()
+    #     self.btn_max.show()
 
     # Metodo del boton de minimizar
-    def control_btn_maximizar(self):
-        self.showMaximized()
-        self.btn_max.hide()
-        self.btn_normal.show()
+    # def control_btn_maximizar(self):
+    #     self.showMaximized()
+    #     self.btn_max.hide()
+    #     self.btn_normal.show()
 
     # Metodo para redimensionar la ventana
     def resizeEvent(self, event):

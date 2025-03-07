@@ -22,7 +22,7 @@ class ProgressBarThread(QThread):
                 self.update_progress.emit(100)  # Lleva la barra al 100% si se detiene
                 break
             self.update_progress.emit(i)  # Actualiza la barra de progreso
-            self.msleep(50)  # Espera 50 ms (equivalente a time.sleep(0.05))
+            self.msleep(40 * 1000 )  # Espera 40 segundos entre cada actualización
 
 #Clase de la ventana heredada de la interfaz "gui_design.py"
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -76,7 +76,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.serial = QSerialPort()
         self.btn_actualizar.clicked.connect(self.read_ports)
         self.btn_conectar.clicked.connect(self.serial_conect)
-        self.btn_desconectar.clicked.connect(lambda: self.serial.close())
+        self.btn_desconectar.clicked.connect(self.serial_desconect)
 
         # Graficas
         self.t1_x = list(np.linspace(0, 50, 50))
@@ -91,17 +91,17 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # Creacion de la grafica 1
         pg.setConfigOption('background', '#ebfeff')
         pg.setConfigOption('foreground', '#000000')
-        self.plt = pg.PlotWidget(title='Temperatura 1')
+        self.plt = pg.PlotWidget()
         self.graph_1.addWidget(self.plt)
 
         pg.setConfigOption('background', '#ebfeff')
         pg.setConfigOption('foreground', '#000000')
-        self.plt2 = pg.PlotWidget(title='Temperatura 2')
+        self.plt2 = pg.PlotWidget()
         self.graph_2.addWidget(self.plt2)
 
         pg.setConfigOption('background', '#ebfeff')
         pg.setConfigOption('foreground', '#000000')
-        self.plt3 = pg.PlotWidget(title='Humedad 1')
+        self.plt3 = pg.PlotWidget()
         self.graph_3.addWidget(self.plt3)
 
         # Asociacion de metodos
@@ -114,6 +114,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # enable first button
         self.enable_button(self.btn_iniciar_1)
+        self.disable_button(self.btn_desconectar)
 
     def set_progressbar_2_zero(self):
         """
@@ -492,25 +493,48 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # Se guardan los datos en un archivo CSV
 
         current_stage = [self.stage_1, self.stage_2, self.stage_3, self.stage_4, self.stage_5]
-        current_stage_index = current_stage.index(True) + 1
-        data = [current_stage_index, datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1]
-        self.save_data(data)
-        # Se muestran los datos en la las graficas
-        self.graph_temperatura_1(temperatura_1)
-        self.graph_temperatura_2(temperatura_2)
-        self.graph_humedad_1(humedad_1)
+        # current_stage_index = current_stage.index(True) + 1 # Doesnt work, (True, true, false) -> 0
+        # El current stage index es el indice de la etapa activa voy a sumar todas las etapas activas
+        # count de etapas activas
+        count = 0
+        for i in current_stage:
+            if i:
+                count += 1
+        
+        current_stage_index = count
+        print(f"Etapa activa: {current_stage_index}")
+
+        name_stage = ["Calentado de Horno", "Ingreso de Cafe", "Tostado", "Salida de Cafe", "Enfriado de Cafe"]
+        # Solo envia cundo hay una etapa activa
+        if current_stage_index != 0:
+            # Se guardan los datos en un archivo CSV
+            data = [name_stage[current_stage_index - 1], datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1]
+
+            self.save_data(data)
+            # Se muestran los datos en la las graficas
+            self.graph_temperatura_1(temperatura_1)
+            self.graph_temperatura_2(temperatura_2)
+            self.graph_humedad_1(humedad_1)
 
 
 
     # ============================ GRAFICAS ============================
     # Metodo para mostrar los datos en la grafica
+    # Error graficando:
+    #     Traceback (most recent call last):
+    # File "C:\Users\reneg\OneDrive\Documentos\Ingenieria y servicios industriales\sistema tostador\Interfaztostadorrv1\rene\app.py", line 506, in read_data
+    #     self.graph_temperatura_1(temperatura_1)
+    # File "C:\Users\reneg\OneDrive\Documentos\Ingenieria y servicios industriales\sistema tostador\Interfaztostadorrv1\rene\app.py", line 519, in graph_temperatura_1
+    #     self.t1_y = self.y[1:]
+    # TypeError: 'builtin_function_or_method' object is not subscriptable
     def graph_temperatura_1(self, temperatura_1):
         """
         Metodo para mostrar los datos en la grafica
         
         """
-        self.t1_y = self.y[1:]
-        self.t1_y.append(temperatura_1)
+        temp = int(temperatura_1)
+        self.t1_y = self.t1_y[1:]
+        self.t1_y.append(temp)
 
         self.plt.clear()
         self.plt.plot(self.t1_x, self.t1_y, pen=pg.mkPen('#1300FF', width=2))
@@ -520,7 +544,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Metodo para mostrar los datos en la grafica
         
         """
-        self.t2_y = self.y[1:]
+        self.t2_y = self.t2_y[1:]
         self.t2_y.append(temperatura_2)
 
         self.plt2.clear()
@@ -531,7 +555,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Metodo para mostrar los datos en la grafica
         
         """
-        self.h1_y = self.y[1:]
+        self.h1_y = self.h1_y[1:]
         self.h1_y.append(humedad_1)
 
         self.plt3.clear()
@@ -613,6 +637,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # Conexion con las caracteristicas especificadas de velocidad y puerto
     def serial_conect(self):
+        self.disable_button(self.btn_conectar)
+        self.enable_button(self.btn_desconectar)
         self.serial.waitForReadyRead(100)
         self.port = self.comboBox_puerto.currentText()
         self.baud = self.comboBox_velocidad.currentText()
@@ -620,8 +646,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.serial.setPortName(self.port)
         self.serial.open(QIODevice.ReadWrite)
 
-    
-        
+    def serial_desconect(self):
+        self.serial.close()
+        self.enable_button(self.btn_conectar)
+        self.disable_button(self.btn_desconectar)
 
     # Metodo para enviar datos por comunicacion Serial
     def send_data(self, data):

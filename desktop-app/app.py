@@ -42,7 +42,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Usamos la funcion QPoint() para guardar la posicion del mouse
         self.click_position = QPoint()
-        self.btn_menu.clicked.connect(self.mover_menu)
+        # self.btn_menu.clicked.connect(self.mover_menu)
 
         # Se configura la ventana asociando los eventos con metodos
         self.btn_normal.hide()
@@ -564,20 +564,20 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
        
     # ============================ INTERFAZ ============================
     # Metodo del boton de menu
-    def mover_menu(self):
-        if True:
-            width = self.frame_menu.width()
-            normal = 0
-            if width == 0:
-                extender = 250
-            else:
-                extender = normal
-            self.animacion = QPropertyAnimation(self.frame_menu, b'minimumWidth')
-            self.animacion.setDuration(300)
-            self.animacion.setStartValue(width)
-            self.animacion.setEndValue(extender)
-            self.animacion.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
-            self.animacion.start()
+    # def mover_menu(self):
+    #     if True:
+    #         width = self.frame_menu.width()
+    #         normal = 0
+    #         if width == 0:
+    #             extender = 250
+    #         else:
+    #             extender = normal
+    #         self.animacion = QPropertyAnimation(self.frame_menu, b'minimumWidth')
+    #         self.animacion.setDuration(300)
+    #         self.animacion.setStartValue(width)
+    #         self.animacion.setEndValue(extender)
+    #         self.animacion.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+    #         self.animacion.start()
 
     # Metodo del boton cerrar
     def control_btn_cerrar(self):

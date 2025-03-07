@@ -50,20 +50,6 @@ class Ui_MainWindow(object):
         self.frame_superior.setObjectName("frame_superior")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frame_superior)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.btn_menu = QtWidgets.QPushButton(self.frame_superior)
-        self.btn_menu.setMinimumSize(QtCore.QSize(50, 36))
-        self.btn_menu.setMaximumSize(QtCore.QSize(50, 36))
-        self.btn_menu.setStyleSheet("QPushButton:hover{\n"
-"background-color: rgb(39,74,233);\n"
-"border-radius: 5px\n"
-"}")
-        self.btn_menu.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/menu.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_menu.setIcon(icon)
-        self.btn_menu.setIconSize(QtCore.QSize(36, 36))
-        self.btn_menu.setObjectName("btn_menu")
-        self.horizontalLayout_2.addWidget(self.btn_menu)
         self.label_3 = QtWidgets.QLabel(self.frame_superior)
         font = QtGui.QFont()
         font.setFamily("Arial")
@@ -79,9 +65,9 @@ class Ui_MainWindow(object):
         self.btn_min.setMinimumSize(QtCore.QSize(36, 36))
         self.btn_min.setMaximumSize(QtCore.QSize(36, 36))
         self.btn_min.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icons/minus.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_min.setIcon(icon1)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("icons/minus.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_min.setIcon(icon)
         self.btn_min.setIconSize(QtCore.QSize(36, 36))
         self.btn_min.setObjectName("btn_min")
         self.horizontalLayout_2.addWidget(self.btn_min)
@@ -89,9 +75,9 @@ class Ui_MainWindow(object):
         self.btn_max.setMinimumSize(QtCore.QSize(36, 36))
         self.btn_max.setMaximumSize(QtCore.QSize(36, 36))
         self.btn_max.setText("")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("icons/chevrons-up.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_max.setIcon(icon2)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("icons/chevrons-up.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_max.setIcon(icon1)
         self.btn_max.setIconSize(QtCore.QSize(36, 36))
         self.btn_max.setObjectName("btn_max")
         self.horizontalLayout_2.addWidget(self.btn_max)
@@ -99,9 +85,9 @@ class Ui_MainWindow(object):
         self.btn_normal.setMinimumSize(QtCore.QSize(36, 36))
         self.btn_normal.setMaximumSize(QtCore.QSize(36, 36))
         self.btn_normal.setText("")
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("icons/chevrons-down.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_normal.setIcon(icon3)
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("icons/chevrons-down.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_normal.setIcon(icon2)
         self.btn_normal.setIconSize(QtCore.QSize(36, 36))
         self.btn_normal.setObjectName("btn_normal")
         self.horizontalLayout_2.addWidget(self.btn_normal)
@@ -112,9 +98,9 @@ class Ui_MainWindow(object):
 "background-color: rgb(230,0,0);\n"
 "}")
         self.btn_cerrar.setText("")
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("icons/x.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_cerrar.setIcon(icon4)
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("icons/x.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_cerrar.setIcon(icon3)
         self.btn_cerrar.setIconSize(QtCore.QSize(36, 36))
         self.btn_cerrar.setObjectName("btn_cerrar")
         self.horizontalLayout_2.addWidget(self.btn_cerrar)
@@ -212,9 +198,9 @@ class Ui_MainWindow(object):
         self.btn_actualizar.setMaximumSize(QtCore.QSize(40, 16777215))
         self.btn_actualizar.setStyleSheet("border-radius:18px;")
         self.btn_actualizar.setText("")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("icons/rotate-cw (1).svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_actualizar.setIcon(icon5)
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap("icons/rotate-cw (1).svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_actualizar.setIcon(icon4)
         self.btn_actualizar.setIconSize(QtCore.QSize(25, 25))
         self.btn_actualizar.setObjectName("btn_actualizar")
         self.horizontalLayout_4.addWidget(self.btn_actualizar)
@@ -280,18 +266,18 @@ class Ui_MainWindow(object):
         self.btn_conectar = QtWidgets.QPushButton(self.frame_menu)
         self.btn_conectar.setMinimumSize(QtCore.QSize(190, 50))
         self.btn_conectar.setMaximumSize(QtCore.QSize(190, 50))
-        icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("icons/log-in.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_conectar.setIcon(icon6)
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap("icons/log-in.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_conectar.setIcon(icon5)
         self.btn_conectar.setIconSize(QtCore.QSize(30, 30))
         self.btn_conectar.setObjectName("btn_conectar")
         self.verticalLayout_4.addWidget(self.btn_conectar)
         self.btn_desconectar = QtWidgets.QPushButton(self.frame_menu)
         self.btn_desconectar.setMinimumSize(QtCore.QSize(190, 50))
         self.btn_desconectar.setMaximumSize(QtCore.QSize(190, 50))
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap("icons/log-out.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_desconectar.setIcon(icon7)
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap("icons/log-out.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_desconectar.setIcon(icon6)
         self.btn_desconectar.setIconSize(QtCore.QSize(30, 30))
         self.btn_desconectar.setObjectName("btn_desconectar")
         self.verticalLayout_4.addWidget(self.btn_desconectar)
@@ -454,56 +440,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_23.addItem(spacerItem13)
         self.verticalLayout_16 = QtWidgets.QVBoxLayout()
         self.verticalLayout_16.setObjectName("verticalLayout_16")
-        self.btn_iniciar = QtWidgets.QPushButton(self.frame_menu_2)
-        self.btn_iniciar.setMinimumSize(QtCore.QSize(190, 50))
-        self.btn_iniciar.setMaximumSize(QtCore.QSize(190, 50))
-        self.btn_iniciar.setStyleSheet("QPushButton{\n"
-"background-color: rgb(84,111,236);\n"
-"border-top-left-radius:5px;\n"
-"border-bottom-left-radius:5px;\n"
-"border-top-right-radius:20px;\n"
-"border-bottom-right-radius:20px;\n"
-"color:rgb(255, 255, 255);\n"
-"font: 77 12pt \"Arial Black\";\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-"background-color: rgb(39,74,233);\n"
-"border-top-left-radius:5px;\n"
-"border-bottom-left-radius:5px;\n"
-"color:rgb(255,255,255);\n"
-"font: 77 12pt \"Arial Black\";\n"
-"border-top-right-radius:20px;\n"
-"border-bottom-right-radius:20px;\n"
-"}")
-        self.btn_iniciar.setIconSize(QtCore.QSize(30, 30))
-        self.btn_iniciar.setObjectName("btn_iniciar")
-        self.verticalLayout_16.addWidget(self.btn_iniciar)
-        self.btn_detener = QtWidgets.QPushButton(self.frame_menu_2)
-        self.btn_detener.setMinimumSize(QtCore.QSize(190, 50))
-        self.btn_detener.setMaximumSize(QtCore.QSize(190, 50))
-        self.btn_detener.setStyleSheet("QPushButton{\n"
-"background-color: rgb(84,111,236);\n"
-"border-top-left-radius:5px;\n"
-"border-bottom-left-radius:5px;\n"
-"border-top-right-radius:20px;\n"
-"border-bottom-right-radius:20px;\n"
-"color:rgb(255, 255, 255);\n"
-"font: 77 12pt \"Arial Black\";\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-"background-color: rgb(39,74,233);\n"
-"border-top-left-radius:5px;\n"
-"border-bottom-left-radius:5px;\n"
-"color:rgb(255,255,255);\n"
-"font: 77 12pt \"Arial Black\";\n"
-"border-top-right-radius:20px;\n"
-"border-bottom-right-radius:20px;\n"
-"}")
-        self.btn_detener.setIconSize(QtCore.QSize(30, 30))
-        self.btn_detener.setObjectName("btn_detener")
-        self.verticalLayout_16.addWidget(self.btn_detener)
         self.horizontalLayout_23.addLayout(self.verticalLayout_16)
         spacerItem14 = QtWidgets.QSpacerItem(18, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_23.addItem(spacerItem14)
@@ -603,6 +539,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_13.addItem(spacerItem19)
         self.verticalLayout_11.addLayout(self.horizontalLayout_13)
         self.verticalLayout_6 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_6.setSpacing(25)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_7.setSpacing(50)
@@ -984,28 +921,28 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.addWidget(self.frame_2)
         self.horizontalLayout_3.addWidget(self.frame_paginas)
         self.verticalLayout.addWidget(self.frame_contenido)
-        self.widget = QtWidgets.QWidget(self.centralwidget)
-        self.widget.setGeometry(QtCore.QRect(0, 0, 2, 2))
-        self.widget.setObjectName("widget")
-        self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 2, 2))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_12.setObjectName("horizontalLayout_12")
-        self.widget1 = QtWidgets.QWidget(self.centralwidget)
-        self.widget1.setGeometry(QtCore.QRect(0, 0, 2, 2))
-        self.widget1.setObjectName("widget1")
-        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.widget1)
+        self.layoutWidget1 = QtWidgets.QWidget(self.centralwidget)
+        self.layoutWidget1.setGeometry(QtCore.QRect(0, 0, 2, 2))
+        self.layoutWidget1.setObjectName("layoutWidget1")
+        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.widget2 = QtWidgets.QWidget(self.centralwidget)
-        self.widget2.setGeometry(QtCore.QRect(0, 0, 2, 2))
-        self.widget2.setObjectName("widget2")
-        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.widget2)
+        self.layoutWidget2 = QtWidgets.QWidget(self.centralwidget)
+        self.layoutWidget2.setGeometry(QtCore.QRect(0, 0, 2, 2))
+        self.layoutWidget2.setObjectName("layoutWidget2")
+        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.layoutWidget2)
         self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
-        self.widget3 = QtWidgets.QWidget(self.centralwidget)
-        self.widget3.setGeometry(QtCore.QRect(0, 0, 2, 2))
-        self.widget3.setObjectName("widget3")
-        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.widget3)
+        self.layoutWidget3 = QtWidgets.QWidget(self.centralwidget)
+        self.layoutWidget3.setGeometry(QtCore.QRect(0, 0, 2, 2))
+        self.layoutWidget3.setObjectName("layoutWidget3")
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.layoutWidget3)
         self.verticalLayout_9.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_9.setObjectName("verticalLayout_9")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -1025,8 +962,6 @@ class Ui_MainWindow(object):
         self.line_cafe.setPlaceholderText(_translate("MainWindow", "Nombre del Cafe"))
         self.label_14.setText(_translate("MainWindow", "Tipo de Tostado"))
         self.line_tipo.setPlaceholderText(_translate("MainWindow", "(Medio, Alto, Super)"))
-        self.btn_iniciar.setText(_translate("MainWindow", "Iniciar"))
-        self.btn_detener.setText(_translate("MainWindow", "Detener"))
         self.label_16.setText(_translate("MainWindow", "Comentarios"))
         self.text_cometarios.setPlaceholderText(_translate("MainWindow", "Agregue un comentario si lo considera necesario, se guardara junto al set de datos almacenados."))
         self.btn_guardar.setText(_translate("MainWindow", "Guardar"))

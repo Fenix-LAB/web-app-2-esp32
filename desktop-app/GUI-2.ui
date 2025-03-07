@@ -85,41 +85,6 @@ background-color: rgb(39,74,233);
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QPushButton" name="btn_menu">
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>36</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>50</width>
-            <height>36</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton:hover{
-background-color: rgb(39,74,233);
-border-radius: 5px
-}</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>icons/menu.svg</normaloff>icons/menu.svg</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>36</width>
-            <height>36</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QLabel" name="label_3">
           <property name="font">
            <font>
@@ -988,100 +953,7 @@ font: 77 12pt &quot;Arial Black&quot;;
                         </spacer>
                        </item>
                        <item>
-                        <layout class="QVBoxLayout" name="verticalLayout_16">
-                         <item>
-                          <widget class="QPushButton" name="btn_iniciar">
-                           <property name="minimumSize">
-                            <size>
-                             <width>190</width>
-                             <height>50</height>
-                            </size>
-                           </property>
-                           <property name="maximumSize">
-                            <size>
-                             <width>190</width>
-                             <height>50</height>
-                            </size>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">QPushButton{
-background-color: rgb(84,111,236);
-border-top-left-radius:5px;
-border-bottom-left-radius:5px;
-border-top-right-radius:20px;
-border-bottom-right-radius:20px;
-color:rgb(255, 255, 255);
-font: 77 12pt &quot;Arial Black&quot;;
-}
-
-QPushButton:hover{
-background-color: rgb(39,74,233);
-border-top-left-radius:5px;
-border-bottom-left-radius:5px;
-color:rgb(255,255,255);
-font: 77 12pt &quot;Arial Black&quot;;
-border-top-right-radius:20px;
-border-bottom-right-radius:20px;
-}</string>
-                           </property>
-                           <property name="text">
-                            <string>Iniciar</string>
-                           </property>
-                           <property name="iconSize">
-                            <size>
-                             <width>30</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QPushButton" name="btn_detener">
-                           <property name="minimumSize">
-                            <size>
-                             <width>190</width>
-                             <height>50</height>
-                            </size>
-                           </property>
-                           <property name="maximumSize">
-                            <size>
-                             <width>190</width>
-                             <height>50</height>
-                            </size>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">QPushButton{
-background-color: rgb(84,111,236);
-border-top-left-radius:5px;
-border-bottom-left-radius:5px;
-border-top-right-radius:20px;
-border-bottom-right-radius:20px;
-color:rgb(255, 255, 255);
-font: 77 12pt &quot;Arial Black&quot;;
-}
-
-QPushButton:hover{
-background-color: rgb(39,74,233);
-border-top-left-radius:5px;
-border-bottom-left-radius:5px;
-color:rgb(255,255,255);
-font: 77 12pt &quot;Arial Black&quot;;
-border-top-right-radius:20px;
-border-bottom-right-radius:20px;
-}</string>
-                           </property>
-                           <property name="text">
-                            <string>Detener</string>
-                           </property>
-                           <property name="iconSize">
-                            <size>
-                             <width>30</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                          </widget>
-                         </item>
-                        </layout>
+                        <layout class="QVBoxLayout" name="verticalLayout_16"/>
                        </item>
                        <item>
                         <spacer name="horizontalSpacer_17">
@@ -1311,6 +1183,9 @@ font: 77 12pt &quot;Arial Black&quot;;
                    </item>
                    <item>
                     <layout class="QVBoxLayout" name="verticalLayout_6">
+                     <property name="spacing">
+                      <number>25</number>
+                     </property>
                      <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_7">
                        <property name="spacing">
@@ -2134,7 +2009,7 @@ background-color: rgb(240, 250, 255);
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -2145,7 +2020,7 @@ background-color: rgb(240, 250, 255);
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_12"/>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -2156,7 +2031,7 @@ background-color: rgb(240, 250, 255);
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_7"/>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -2167,7 +2042,7 @@ background-color: rgb(240, 250, 255);
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_8"/>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>

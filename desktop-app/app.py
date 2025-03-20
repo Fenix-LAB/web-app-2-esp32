@@ -87,9 +87,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # self.btn_normal.clicked.connect(self.control_btn_normal)
         # self.btn_max.clicked.connect(self.control_btn_maximizar)
         self.btn_iniciar_1.clicked.connect(self.start_stage_1)
-        # self.btn_iniciar_2.clicked.connect(self.start_stage_2) # Ya no 
+        # self.btn_iniciar_2.clicked.connect(self.start_stage_2) # Ya no existe esta etapa
         self.btn_iniciar_3.clicked.connect(self.start_stage_3)
-        # self.btn_iniciar_4.clicked.connect(self.start_stage_4)
+        # self.btn_iniciar_4.clicked.connect(self.start_stage_4) # Ya no existe esta etapa
         self.btn_iniciar_5.clicked.connect(self.start_stage_5)
         self.btn_guardar.clicked.connect(self.save_button_clicked)
 
@@ -158,9 +158,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         
         """
         self.prog_1.setValue(0)
-        self.prog_2.setValue(0)
+        # self.prog_2.setValue(0)
         self.prog_3.setValue(0)
-        self.prog_4.setValue(0)
+        # self.prog_4.setValue(0)
         self.prog_5.setValue(0)
 
     def disable_all_start_buttons(self):
@@ -177,16 +177,16 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         """
 
         self.btn_iniciar_1.setEnabled(False)
-        self.btn_iniciar_2.setEnabled(False)
+        # self.btn_iniciar_2.setEnabled(False)
         self.btn_iniciar_3.setEnabled(False)
-        self.btn_iniciar_4.setEnabled(False)
+        # self.btn_iniciar_4.setEnabled(False)
         self.btn_iniciar_5.setEnabled(False)
 
         # Now change style to grayed out
         self.btn_iniciar_1.setStyleSheet(style_grayed_out)
-        self.btn_iniciar_2.setStyleSheet(style_grayed_out)
+        # self.btn_iniciar_2.setStyleSheet(style_grayed_out)
         self.btn_iniciar_3.setStyleSheet(style_grayed_out)
-        self.btn_iniciar_4.setStyleSheet(style_grayed_out)
+        # self.btn_iniciar_4.setStyleSheet(style_grayed_out)
         self.btn_iniciar_5.setStyleSheet(style_grayed_out)
     
     def disable_save_button(self):
@@ -253,27 +253,27 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.enable_button(self.btn_iniciar_2)
         self.disable_button(self.btn_iniciar_1)
         self.change_button_text(self.btn_iniciar_1, "...")
-        self.start_progressbar_1()
+        # self.start_progressbar_1()
 
         self.start_time_stage1 = datetime.now()
 
         self.create_csv()
 
 
-    def start_stage_2(self):
-        """
-        Metodo para iniciar la captura de datos
+    # def start_stage_2(self):
+    #     """
+    #     Metodo para iniciar la captura de datos
         
-        """
-        self.stage_2 = True
-        self.enable_button(self.btn_iniciar_3)
-        # self.start_progressbar_2()
-        self.disable_button(self.btn_iniciar_2)
-        self.change_button_text(self.btn_iniciar_1, "Listo")
-        self.change_button_text(self.btn_iniciar_2, "...")
-        self.start_progressbar_2()
+    #     """
+    #     self.stage_2 = True
+    #     self.enable_button(self.btn_iniciar_3)
+    #     # self.start_progressbar_2()
+    #     self.disable_button(self.btn_iniciar_2)
+    #     self.change_button_text(self.btn_iniciar_1, "Listo")
+    #     self.change_button_text(self.btn_iniciar_2, "...")
+    #     self.start_progressbar_2()
 
-        self.start_time_stage2 = datetime.now()
+    #     self.start_time_stage2 = datetime.now()
 
     def start_stage_3(self):
         """
@@ -285,23 +285,23 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.disable_button(self.btn_iniciar_3)
         self.change_button_text(self.btn_iniciar_2, "Listo")
         self.change_button_text(self.btn_iniciar_3, "...")
-        self.start_progressbar_3()
+        # self.start_progressbar_3()
 
         self.start_time_stage3 = datetime.now()
 
-    def start_stage_4(self):
-        """
-        Metodo para iniciar la captura de datos
+    # def start_stage_4(self):
+    #     """
+    #     Metodo para iniciar la captura de datos
         
-        """
-        self.stage_4 = True
-        self.enable_button(self.btn_iniciar_5)
-        self.disable_button(self.btn_iniciar_4)
-        self.change_button_text(self.btn_iniciar_3, "Listo")
-        self.change_button_text(self.btn_iniciar_4, "...")
-        self.start_progressbar_4()
+    #     """
+    #     self.stage_4 = True
+    #     self.enable_button(self.btn_iniciar_5)
+    #     self.disable_button(self.btn_iniciar_4)
+    #     self.change_button_text(self.btn_iniciar_3, "Listo")
+    #     self.change_button_text(self.btn_iniciar_4, "...")
+    #     self.start_progressbar_4()
 
-        self.start_time_stage4 = datetime.now()
+    #     self.start_time_stage4 = datetime.now()
 
     def start_stage_5(self):
         """
@@ -313,67 +313,67 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.disable_button(self.btn_iniciar_5)
         self.change_button_text(self.btn_iniciar_4, "Listo")
         self.change_button_text(self.btn_iniciar_5, "...")
-        self.start_progressbar_5()
+        # self.start_progressbar_5()
 
         self.start_time_stage5 = datetime.now()
 
 
-    def start_progressbar_1(self):
-        """
-        Metodo para iniciar la barra de progreso
-        Solo es visual, la barra de progreso no tiene ninguna funcion
-        Avanzara de de forma constante hasta llegar al 100%
-        Si se presiona el siguiente boton de inicio, la barra de progreso llegara el 100%
+    # def start_progressbar_1(self):
+    #     """
+    #     Metodo para iniciar la barra de progreso
+    #     Solo es visual, la barra de progreso no tiene ninguna funcion
+    #     Avanzara de de forma constante hasta llegar al 100%
+    #     Si se presiona el siguiente boton de inicio, la barra de progreso llegara el 100%
         
-        """
-        self.prog_1.setValue(0)
-        self.progress_thread_1 = ProgressBarThread(self.prog_1, lambda: self.stage_2)
-        self.progress_thread_1.update_progress.connect(self.prog_1.setValue)
-        self.progress_thread_1.start()
+    #     """
+    #     self.prog_1.setValue(0)
+    #     self.progress_thread_1 = ProgressBarThread(self.prog_1, lambda: self.stage_2)
+    #     self.progress_thread_1.update_progress.connect(self.prog_1.setValue)
+    #     self.progress_thread_1.start()
 
-    def start_progressbar_2(self):
-        """
-        Metodo para iniciar la barra de progreso
-        """
+    # def start_progressbar_2(self):
+    #     """
+    #     Metodo para iniciar la barra de progreso
+    #     """
 
-        self.prog_2.setValue(0)
+    #     self.prog_2.setValue(0)
         
-        self.progress_thread_2 = ProgressBarThread(self.prog_2, lambda: self.stage_3)
-        self.progress_thread_2.update_progress.connect(self.prog_2.setValue)
-        self.progress_thread_2.start()
+    #     self.progress_thread_2 = ProgressBarThread(self.prog_2, lambda: self.stage_3)
+    #     self.progress_thread_2.update_progress.connect(self.prog_2.setValue)
+    #     self.progress_thread_2.start()
 
-    def start_progressbar_3(self):
-        """
-        Metodo para iniciar la barra de progreso
-        """
+    # def start_progressbar_3(self):
+    #     """
+    #     Metodo para iniciar la barra de progreso
+    #     """
 
-        self.prog_3.setValue(0)
+    #     self.prog_3.setValue(0)
         
-        self.progress_thread_3 = ProgressBarThread(self.prog_3, lambda: self.stage_4)
-        self.progress_thread_3.update_progress.connect(self.prog_3.setValue)
-        self.progress_thread_3.start()
+    #     self.progress_thread_3 = ProgressBarThread(self.prog_3, lambda: self.stage_4)
+    #     self.progress_thread_3.update_progress.connect(self.prog_3.setValue)
+    #     self.progress_thread_3.start()
 
-    def start_progressbar_4(self):
-        """
-        Metodo para iniciar la barra de progreso
-        """
+    # def start_progressbar_4(self):
+    #     """
+    #     Metodo para iniciar la barra de progreso
+    #     """
 
-        self.prog_4.setValue(0)
+    #     self.prog_4.setValue(0)
         
-        self.progress_thread_4 = ProgressBarThread(self.prog_4, lambda: self.stage_5)
-        self.progress_thread_4.update_progress.connect(self.prog_4.setValue)
-        self.progress_thread_4.start()
+    #     self.progress_thread_4 = ProgressBarThread(self.prog_4, lambda: self.stage_5)
+    #     self.progress_thread_4.update_progress.connect(self.prog_4.setValue)
+    #     self.progress_thread_4.start()
     
-    def start_progressbar_5(self):
-        """
-        Metodo para iniciar la barra de progreso
-        """
+    # def start_progressbar_5(self):
+    #     """
+    #     Metodo para iniciar la barra de progreso
+    #     """
 
-        self.prog_5.setValue(0)
+    #     self.prog_5.setValue(0)
         
-        self.progress_thread_5 = ProgressBarThread(self.prog_5, lambda: self.save_button)
-        self.progress_thread_5.update_progress.connect(self.prog_5.setValue)
-        self.progress_thread_5.start()
+    #     self.progress_thread_5 = ProgressBarThread(self.prog_5, lambda: self.save_button)
+    #     self.progress_thread_5.update_progress.connect(self.prog_5.setValue)
+    #     self.progress_thread_5.start()
 
 
     def save_button_clicked(self):
@@ -402,7 +402,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.stage_5 = False
         self.save_button = False
 
-        self.set_progressbar_2_zero()
+        # self.set_progressbar_2_zero()
         self.disable_all_start_buttons()
         self.disable_save_button()
 

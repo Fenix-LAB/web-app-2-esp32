@@ -249,11 +249,20 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Metodo para iniciar la captura de datos
         
         """
+
+        self.timer_stage_1 = TimerThread(self.label_timer_1, format="mm:ss")
+        self.timer_stage_1.update_time.connect(self.timer_label_1.setText)
+        
+        self.timer_total = TimerThread(self.label_timer_total, format="hh:mm:ss")
+        self.timer_total.update_time.connect(self.timer_4.setText)
+
         self.stage_1 = True
         self.enable_button(self.btn_iniciar_2)
         self.disable_button(self.btn_iniciar_1)
         self.change_button_text(self.btn_iniciar_1, "...")
         # self.start_progressbar_1()
+        self.timer_stage_1.start()  # Inicia el cronómetro
+        self.timer_total.start()
 
         self.start_time_stage1 = datetime.now()
 
@@ -280,12 +289,17 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Metodo para iniciar la captura de datos
         
         """
+        self.timer_stage_3 = TimerThread(self.label_timer_2, format="mm:ss")
+        self.timer_stage_3.update_time.connect(self.timer_label_2.setText)
+
         self.stage_3 = True
         self.enable_button(self.btn_iniciar_4)
         self.disable_button(self.btn_iniciar_3)
         self.change_button_text(self.btn_iniciar_2, "Listo")
         self.change_button_text(self.btn_iniciar_3, "...")
         # self.start_progressbar_3()
+        self.timer_stage_3.start()
+
 
         self.start_time_stage3 = datetime.now()
 
@@ -308,12 +322,16 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Metodo para iniciar la captura de datos
         
         """
+        self.timer_stage_5 = TimerThread(self.label_timer_3, format="mm:ss")
+        self.timer_stage_5.update_time.connect(self.timer_label_3.setText)
+
         self.stage_5 = True
         self.enable_button(self.btn_guardar)
         self.disable_button(self.btn_iniciar_5)
         self.change_button_text(self.btn_iniciar_4, "Listo")
         self.change_button_text(self.btn_iniciar_5, "...")
         # self.start_progressbar_5()
+        self.timer_stage_5.start()
 
         self.start_time_stage5 = datetime.now()
 

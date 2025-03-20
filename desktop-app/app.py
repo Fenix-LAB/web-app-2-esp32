@@ -8,21 +8,57 @@ import csv
 import pyqtgraph as pg
 import numpy as np
 
-class ProgressBarThread(QThread):
-    update_progress = pyqtSignal(int)  # Señal para actualizar la barra de progreso
+from PyQt5.QtCore import QThread, pyqtSignal, QDateTime
 
-    def __init__(self, progress_bar, stop_condition):
+class TimerThread(QThread):
+    update_time = pyqtSignal(str)  # Señal para actualizar el tiempo en el QLabel
+
+    def __init__(self, label, format="mm:ss"):
         super().__init__()
-        self.progress_bar = progress_bar
-        self.stop_condition = stop_condition
+        self.label = label  # QLabel que mostrará el tiempo
+        self.format = format  # Formato de tiempo: "mm:ss" o "hh:mm:ss"
+        self.running = False  # Estado del cronómetro
+        self.start_time = None  # Tiempo de inicio
 
     def run(self):
-        for i in range(100):
-            if self.stop_condition():  # Verifica si se debe detener el progreso
-                self.update_progress.emit(100)  # Lleva la barra al 100% si se detiene
-                break
-            self.update_progress.emit(i)  # Actualiza la barra de progreso
-            self.msleep(40 * 1000 )  # Espera 40 segundos entre cada actualización
+        self.running = True
+        self.start_time = QDateTime.currentDateTime()  # Guarda el tiempo de inicio
+
+        while self.running:
+            current_time = QDateTime.currentDateTime()  # Obtiene el tiempo actual
+            elapsed_time = self.start_time.msecsTo(current_time)  # Calcula el tiempo transcurrido en milisegundos
+
+            # Convierte el tiempo transcurrido a segundos
+            seconds = elapsed_time // 1000
+
+            # Formatea el tiempo según el formato especificado
+            if self.format == "mm:ss":
+                minutes = seconds // 60
+                seconds = seconds % 60
+                time_str = f"{minutes:02}:{seconds:02}"
+            elif self.format == "hh:mm:ss":
+                hours = seconds // 3600
+                minutes = (seconds % 3600) // 60
+                seconds = seconds % 60
+                time_str = f"{hours:02}:{minutes:02}:{seconds:02}"
+
+            # Emite la señal para actualizar el QLabel
+            self.update_time.emit(time_str)
+
+            self.msleep(1000)  # Espera 1 segundo antes de la siguiente actualización
+
+    def stop(self):
+        """
+        Detiene el cronómetro.
+        """
+        self.running = False
+        self.wait()  # Espera a que el hilo termine
+
+    def reset(self):
+        """
+        Reinicia el cronómetro.
+        """
+        self.start_time = QDateTime.currentDateTime()
 
 #Clase de la ventana heredada de la interfaz "gui_design.py"
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -51,9 +87,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # self.btn_normal.clicked.connect(self.control_btn_normal)
         # self.btn_max.clicked.connect(self.control_btn_maximizar)
         self.btn_iniciar_1.clicked.connect(self.start_stage_1)
-        self.btn_iniciar_2.clicked.connect(self.start_stage_2)
+        # self.btn_iniciar_2.clicked.connect(self.start_stage_2) # Ya no 
         self.btn_iniciar_3.clicked.connect(self.start_stage_3)
-        self.btn_iniciar_4.clicked.connect(self.start_stage_4)
+        # self.btn_iniciar_4.clicked.connect(self.start_stage_4)
         self.btn_iniciar_5.clicked.connect(self.start_stage_5)
         self.btn_guardar.clicked.connect(self.save_button_clicked)
 

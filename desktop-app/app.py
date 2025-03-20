@@ -438,6 +438,13 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.timer_3.setText("00:00")
         self.timer_4.setText("00:00:00")
 
+        self.btn_iniciar_1.setText("Iniciar")
+        # self.btn_iniciar_2.setText("Iniciar")
+        self.btn_iniciar_3.setText("Iniciar")
+        # self.btn_iniciar_4.setText("Iniciar")
+        self.btn_iniciar_5.setText("Iniciar")
+        self.btn_guardar.setText("Guardar")
+
         # enable first button
         self.enable_button(self.btn_iniciar_1)
             
@@ -606,6 +613,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         temperatura_1 = int(datos[0])
         temperatura_2 = int(datos[1])
         humedad_1 = int(datos[2])
+
+        self.valor_1.setText(str(temperatura_1))
+        self.valor_2.setText(str(temperatura_2))
+        self.valor_3.setText(str(humedad_1))
 
         # Se guardan los datos en un archivo CSV
 

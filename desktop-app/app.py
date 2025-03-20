@@ -144,7 +144,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.serial.readyRead.connect(self.read_data)
         self.read_ports()
 
-        self.set_progressbar_2_zero()
+        # self.set_progressbar_2_zero()
         self.disable_all_start_buttons()
         self.disable_save_button()
 
@@ -152,16 +152,16 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.enable_button(self.btn_iniciar_1)
         self.disable_button(self.btn_desconectar)
 
-    def set_progressbar_2_zero(self):
-        """
-        Metodo para poner en 0 todas las barras de progreso
+    # def set_progressbar_2_zero(self):
+    #     """
+    #     Metodo para poner en 0 todas las barras de progreso
         
-        """
-        self.prog_1.setValue(0)
-        # self.prog_2.setValue(0)
-        self.prog_3.setValue(0)
-        # self.prog_4.setValue(0)
-        self.prog_5.setValue(0)
+    #     """
+    #     self.prog_1.setValue(0)
+    #     # self.prog_2.setValue(0)
+    #     self.prog_3.setValue(0)
+    #     # self.prog_4.setValue(0)
+    #     # self.prog_5.setValue(0)
 
     def disable_all_start_buttons(self):
         """
@@ -250,14 +250,14 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         
         """
 
-        self.timer_stage_1 = TimerThread(self.label_timer_1, format="mm:ss")
-        self.timer_stage_1.update_time.connect(self.timer_label_1.setText)
+        self.timer_stage_1 = TimerThread(self.timer_1, format="mm:ss")
+        self.timer_stage_1.update_time.connect(self.timer_1.setText)
         
-        self.timer_total = TimerThread(self.label_timer_total, format="hh:mm:ss")
+        self.timer_total = TimerThread(self.timer_4, format="hh:mm:ss")
         self.timer_total.update_time.connect(self.timer_4.setText)
 
         self.stage_1 = True
-        self.enable_button(self.btn_iniciar_2)
+        self.enable_button(self.btn_iniciar_3)
         self.disable_button(self.btn_iniciar_1)
         self.change_button_text(self.btn_iniciar_1, "...")
         # self.start_progressbar_1()
@@ -289,16 +289,17 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Metodo para iniciar la captura de datos
         
         """
-        self.timer_stage_3 = TimerThread(self.label_timer_2, format="mm:ss")
-        self.timer_stage_3.update_time.connect(self.timer_label_2.setText)
+        self.timer_stage_3 = TimerThread(self.timer_2, format="mm:ss")
+        self.timer_stage_3.update_time.connect(self.timer_2.setText)
 
         self.stage_3 = True
-        self.enable_button(self.btn_iniciar_4)
+        self.enable_button(self.btn_iniciar_5)
         self.disable_button(self.btn_iniciar_3)
-        self.change_button_text(self.btn_iniciar_2, "Listo")
+        self.change_button_text(self.btn_iniciar_1, "Listo")
         self.change_button_text(self.btn_iniciar_3, "...")
         # self.start_progressbar_3()
         self.timer_stage_3.start()
+        self.timer_stage_1.stop()
 
 
         self.start_time_stage3 = datetime.now()
@@ -322,16 +323,17 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Metodo para iniciar la captura de datos
         
         """
-        self.timer_stage_5 = TimerThread(self.label_timer_3, format="mm:ss")
-        self.timer_stage_5.update_time.connect(self.timer_label_3.setText)
+        self.timer_stage_5 = TimerThread(self.timer_3, format="mm:ss")
+        self.timer_stage_5.update_time.connect(self.timer_3.setText)
 
         self.stage_5 = True
         self.enable_button(self.btn_guardar)
         self.disable_button(self.btn_iniciar_5)
-        self.change_button_text(self.btn_iniciar_4, "Listo")
+        self.change_button_text(self.btn_iniciar_3, "Listo")
         self.change_button_text(self.btn_iniciar_5, "...")
         # self.start_progressbar_5()
         self.timer_stage_5.start()
+        self.timer_stage_3.stop()
 
         self.start_time_stage5 = datetime.now()
 
@@ -401,10 +403,13 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.save_button = True
         self.change_button_text(self.btn_iniciar_5, "Listo")
-        self.change_button_text(self.btn_guardar, "Guardando...")
-        
+        self.timer_stage_5.stop()
+        self.timer_total.stop()
+        # self.change_button_text(self.btn_guardar, "Guardando...")
+        # time.sleep(5)
         self.create_end_csv()
         self.change_button_text(self.btn_guardar, "Guardado")
+
 
         self.disable_save_button()
 
@@ -414,15 +419,24 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         
         """
         self.stage_1 = False
-        self.stage_2 = False
+        # self.stage_2 = False
         self.stage_3 = False
-        self.stage_4 = False
+        # self.stage_4 = False
         self.stage_5 = False
         self.save_button = False
 
         # self.set_progressbar_2_zero()
         self.disable_all_start_buttons()
         self.disable_save_button()
+        self.timer_stage_1.reset()
+        self.timer_stage_3.reset()
+        self.timer_stage_5.reset()
+        self.timer_total.reset()
+
+        self.timer_1.setText("00:00")
+        self.timer_2.setText("00:00")
+        self.timer_3.setText("00:00")
+        self.timer_4.setText("00:00:00")
 
         # enable first button
         self.enable_button(self.btn_iniciar_1)
@@ -474,6 +488,39 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         nombre = self.line_cafe.text()
         tipo = self.line_tipo.text()
         return nombre, tipo
+    
+    def get_kilos_ingresados(self):
+        """
+        Metodo para obtener los kilos ingresados
+        Se guardan al final de la lista
+        """
+        kilos = self.line_kilos_in.text()
+        return kilos
+    
+    def get_kilos_salida(self):
+        """
+        Metodo para obtener los kilos de salida
+        Se guardan al final de la lista
+        """
+        kilos = self.line_kilos_out.text()
+        return kilos
+    
+    def get_lote(self):
+        """
+        Metodo para obtener el lote
+        Se guardan al final de la lista
+        """
+        lote = self.line_lote.text()
+        return lote
+    
+    def get_humedad(self):
+        """
+        Metodo para obtener la humedad
+        Se guardan al final de la lista
+        """
+        humedad = self.line_hum.text()
+        return humedad
+    
 
     def create_end_csv(self):
         """
@@ -481,40 +528,56 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         """
 
         self.tiempo_total = datetime.now() - self.start_time_stage1
-        self.tiempo_1 = self.start_time_stage2 - self.start_time_stage1
-        self.tiempo_2 = self.start_time_stage3 - self.start_time_stage2
-        self.tiempo_3 = self.start_time_stage4 - self.start_time_stage3
-        self.tiempo_4 = self.start_time_stage5 - self.start_time_stage4
+        self.tiempo_1 = self.start_time_stage3 - self.start_time_stage1
+        # self.tiempo_2 = self.start_time_stage3 - self.start_time_stage2
+        self.tiempo_3 = self.start_time_stage5 - self.start_time_stage3
+        # self.tiempo_4 = self.start_time_stage5 - self.start_time_stage4
         self.tiempo_5 = datetime.now() - self.start_time_stage5
 
         # Se crea el resumen de los datos
 
-        resumen = ["Resumen de datos"]
         name, tipo = self.get_name_and_type()
         comentarios = self.get_comments()
-        resumen.append(f"Nombre: {name}")
-        resumen.append(f"Tipo: {tipo}")
-        resumen.append(f"Comentarios: {comentarios}")
+        # resumen.append(f"Nombre: {name}")
+        # resumen.append(f"Tipo: {tipo}")
+        # resumen.append(f"Comentarios: {comentarios}")
+        # resumen.append(f"Kilos ingresados: {self.get_kilos_ingresados()}")
+        # resumen.append(f"Kilos de salida: {self.get_kilos_salida()}")
+        # resumen.append(f"Lote: {self.get_lote()}")
+        # resumen.append(f"Humedad: {self.get_humedad()}")
 
         l1 = ["Tiempo total: ", self.tiempo_total]
         l2 = ["Tiempo etapa 1: ", self.tiempo_1]
-        l3 = ["Tiempo etapa 2: ", self.tiempo_2]
-        l4 = ["Tiempo etapa 3: ", self.tiempo_3]
-        l5 = ["Tiempo etapa 4: ", self.tiempo_4]
-        l6 = ["Tiempo etapa 5: ", self.tiempo_5]
+        # l3 = ["Tiempo etapa 2: ", self.tiempo_2]
+        l4 = ["Tiempo etapa 2: ", self.tiempo_3]
+        # l5 = ["Tiempo etapa 4: ", self.tiempo_4]
+        l6 = ["Tiempo etapa 3: ", self.tiempo_5]
 
         with open(self.file_name, mode='a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(resumen)
+
+            writer.writerow(["Resumen de datos"])
+
+            writer.writerow(["Nombre: ", name])
+            writer.writerow(["Tipo: ", tipo])
+            writer.writerow(["Comentarios: ", comentarios])
+            writer.writerow(["Kilos ingresados: ", self.get_kilos_ingresados()])
+            writer.writerow(["Kilos de salida: ", self.get_kilos_salida()])
+            writer.writerow(["Lote: ", self.get_lote()])
+            writer.writerow(["Humedad: ", self.get_humedad()])
+
+            
             writer.writerow(l1)
             writer.writerow(l2)
-            writer.writerow(l3)
+            # writer.writerow(l3)
             writer.writerow(l4)
-            writer.writerow(l5)
+            # writer.writerow(l5)
             writer.writerow(l6)
+
+            
         print(f"Resumen guardado en {self.file_name}")
 
-        time.sleep(3)
+        # time.sleep(3)
 
         self.reset_all()
 

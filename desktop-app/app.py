@@ -455,7 +455,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Y escribir la cabecera
         """
         cabecera_l1 = ["Archivo de datos del dia ", datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S')]
-        cabecera_l2 = ["Etapa", "Fecha", "Hora", "Temperatura_1", "Temperatura_2", "Humedad_1"]
+        cabecera_l2 = ["Etapa", "Fecha", "Hora", "Temperatura_1", "Temperatura_2", "Humedad_1", "Color R", "Color G", "Color B"]
 
         with open(self.file_name, mode='w', newline='') as file:
             writer = csv.writer(file)
@@ -613,14 +613,26 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         temperatura_1 = int(datos[0])
         temperatura_2 = int(datos[1])
         humedad_1 = int(datos[2])
+        # color
+        r = int(datos[3])
+        g = int(datos[4])
+        b = int(datos[5])
 
         self.valor_1.setText(str(temperatura_1))
         self.valor_2.setText(str(temperatura_2))
         self.valor_3.setText(str(humedad_1))
+        self.graph_temperatura_1(temperatura_1)
+        self.graph_temperatura_2(temperatura_2)
+        self.graph_humedad_1(humedad_1)
+
+        self.show_color_in_frame(r, g, b)
+        self.color_r.setText(str(r))
+        self.color_g.setText(str(g))
+        self.color_b.setText(str(b))
 
         # Se guardan los datos en un archivo CSV
 
-        current_stage = [self.stage_1, self.stage_2, self.stage_3, self.stage_4, self.stage_5]
+        current_stage = [self.stage_1, self.stage_3, self.stage_5]
         # current_stage_index = current_stage.index(True) + 1 # Doesnt work, (True, true, false) -> 0
         # El current stage index es el indice de la etapa activa voy a sumar todas las etapas activas
         # count de etapas activas
@@ -632,17 +644,14 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         current_stage_index = count
         print(f"Etapa activa: {current_stage_index}")
 
-        name_stage = ["Calentado de Horno", "Ingreso de Cafe", "Tostado", "Salida de Cafe", "Enfriado de Cafe"]
+        name_stage = ["Calentado de Horno", "Tostado", "Enfriado de Cafe"]
         # Solo envia cundo hay una etapa activa
         if current_stage_index != 0:
             # Se guardan los datos en un archivo CSV
-            data = [name_stage[current_stage_index - 1], datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1]
+            data = [name_stage[current_stage_index - 1], datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1, r, g, b]
 
             self.save_data(data)
-            # Se muestran los datos en la las graficas
-            self.graph_temperatura_1(temperatura_1)
-            self.graph_temperatura_2(temperatura_2)
-            self.graph_humedad_1(humedad_1)
+            
 
 
 
@@ -688,6 +697,15 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.plt3.clear()
         self.plt3.plot(self.h1_x, self.h1_y, pen=pg.mkPen('#1300FF', width=2))
+
+
+    def show_color_in_frame(self, r, g, b):
+        """
+        Metodo para mostrar el color en el frame
+        
+        """
+        self.frame_rgb.setStyleSheet(f"background-color: rgb({r}, {g}, {b});")
+        self.frame_rgb.setAutoFillBackground(True)
         
        
     # ============================ INTERFAZ ============================

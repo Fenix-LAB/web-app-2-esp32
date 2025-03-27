@@ -979,7 +979,7 @@ font: 77 12pt &quot;Arial Black&quot;;
                     </item>
                    </layout>
                   </widget>
-                  <widget class="QWidget" name="">
+                  <widget class="QWidget" name="layoutWidget">
                    <property name="geometry">
                     <rect>
                      <x>20</x>
@@ -1029,7 +1029,7 @@ font: 77 12pt &quot;Arial Black&quot;;
                     </item>
                    </layout>
                   </widget>
-                  <widget class="QWidget" name="">
+                  <widget class="QWidget" name="layoutWidget">
                    <property name="geometry">
                     <rect>
                      <x>20</x>
@@ -1237,7 +1237,7 @@ font: 77 12pt &quot;Arial Black&quot;;
                    <property name="geometry">
                     <rect>
                      <x>370</x>
-                     <y>160</y>
+                     <y>130</y>
                      <width>121</width>
                      <height>28</height>
                     </rect>
@@ -1262,7 +1262,7 @@ font: 77 12pt &quot;Arial Black&quot;;
                    <property name="geometry">
                     <rect>
                      <x>370</x>
-                     <y>240</y>
+                     <y>190</y>
                      <width>121</width>
                      <height>28</height>
                     </rect>
@@ -1287,7 +1287,7 @@ font: 77 12pt &quot;Arial Black&quot;;
                    <property name="geometry">
                     <rect>
                      <x>590</x>
-                     <y>590</y>
+                     <y>520</y>
                      <width>41</width>
                      <height>28</height>
                     </rect>
@@ -1392,7 +1392,7 @@ border-bottom-right-radius:20px;
                    <property name="geometry">
                     <rect>
                      <x>550</x>
-                     <y>160</y>
+                     <y>130</y>
                      <width>120</width>
                      <height>35</height>
                     </rect>
@@ -1444,7 +1444,7 @@ border-bottom-right-radius:20px;
                    <property name="geometry">
                     <rect>
                      <x>200</x>
-                     <y>162</y>
+                     <y>130</y>
                      <width>86</width>
                      <height>28</height>
                     </rect>
@@ -1468,8 +1468,8 @@ border-bottom-right-radius:20px;
                   <widget class="QLabel" name="label_22">
                    <property name="geometry">
                     <rect>
-                     <x>103</x>
-                     <y>240</y>
+                     <x>110</x>
+                     <y>190</y>
                      <width>180</width>
                      <height>28</height>
                     </rect>
@@ -1494,7 +1494,7 @@ border-bottom-right-radius:20px;
                    <property name="geometry">
                     <rect>
                      <x>550</x>
-                     <y>240</y>
+                     <y>190</y>
                      <width>120</width>
                      <height>35</height>
                     </rect>
@@ -1546,7 +1546,7 @@ border-bottom-right-radius:20px;
                    <property name="geometry">
                     <rect>
                      <x>60</x>
-                     <y>320</y>
+                     <y>250</y>
                      <width>158</width>
                      <height>28</height>
                     </rect>
@@ -1571,7 +1571,7 @@ border-bottom-right-radius:20px;
                    <property name="geometry">
                     <rect>
                      <x>290</x>
-                     <y>320</y>
+                     <y>250</y>
                      <width>158</width>
                      <height>28</height>
                     </rect>
@@ -1596,7 +1596,7 @@ border-bottom-right-radius:20px;
                    <property name="geometry">
                     <rect>
                      <x>540</x>
-                     <y>320</y>
+                     <y>250</y>
                      <width>102</width>
                      <height>28</height>
                     </rect>
@@ -1617,11 +1617,11 @@ border-bottom-right-radius:20px;
                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                    </property>
                   </widget>
-                  <widget class="QWidget" name="">
+                  <widget class="QWidget" name="layoutWidget">
                    <property name="geometry">
                     <rect>
                      <x>350</x>
-                     <y>590</y>
+                     <y>520</y>
                      <width>43</width>
                      <height>30</height>
                     </rect>
@@ -1667,11 +1667,11 @@ border-bottom-right-radius:20px;
                     </item>
                    </layout>
                   </widget>
-                  <widget class="QWidget" name="">
+                  <widget class="QWidget" name="layoutWidget">
                    <property name="geometry">
                     <rect>
                      <x>230</x>
-                     <y>660</y>
+                     <y>680</y>
                      <width>283</width>
                      <height>30</height>
                     </rect>
@@ -1720,11 +1720,11 @@ border-bottom-right-radius:20px;
                     </item>
                    </layout>
                   </widget>
-                  <widget class="QWidget" name="">
+                  <widget class="QWidget" name="layoutWidget">
                    <property name="geometry">
                     <rect>
                      <x>110</x>
-                     <y>590</y>
+                     <y>520</y>
                      <width>43</width>
                      <height>30</height>
                     </rect>
@@ -1770,11 +1770,11 @@ border-bottom-right-radius:20px;
                     </item>
                    </layout>
                   </widget>
-                  <widget class="QWidget" name="">
+                  <widget class="QWidget" name="layoutWidget">
                    <property name="geometry">
                     <rect>
                      <x>30</x>
-                     <y>360</y>
+                     <y>290</y>
                      <width>676</width>
                      <height>222</height>
                     </rect>
@@ -1931,6 +1931,197 @@ background-color: rgb(240, 250, 255);
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_28">
+                   <property name="geometry">
+                    <rect>
+                     <x>70</x>
+                     <y>600</y>
+                     <width>158</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Color</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="color_r">
+                   <property name="geometry">
+                    <rect>
+                     <x>210</x>
+                     <y>610</y>
+                     <width>41</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>40</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="color_g">
+                   <property name="geometry">
+                    <rect>
+                     <x>310</x>
+                     <y>610</y>
+                     <width>41</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>40</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="colo_b">
+                   <property name="geometry">
+                    <rect>
+                     <x>410</x>
+                     <y>610</y>
+                     <width>41</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>40</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_29">
+                   <property name="geometry">
+                    <rect>
+                     <x>190</x>
+                     <y>580</y>
+                     <width>81</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>R</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_30">
+                   <property name="geometry">
+                    <rect>
+                     <x>290</x>
+                     <y>580</y>
+                     <width>81</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>G</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_31">
+                   <property name="geometry">
+                    <rect>
+                     <x>390</x>
+                     <y>580</y>
+                     <width>81</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>B</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QFrame" name="frame_rgb">
+                   <property name="geometry">
+                    <rect>
+                     <x>510</x>
+                     <y>580</y>
+                     <width>51</width>
+                     <height>51</height>
+                    </rect>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
                    </property>
                   </widget>
                  </widget>

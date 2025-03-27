@@ -553,12 +553,12 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # resumen.append(f"Lote: {self.get_lote()}")
         # resumen.append(f"Humedad: {self.get_humedad()}")
 
-        l1 = ["Tiempo total: ", self.tiempo_total]
-        l2 = ["Tiempo etapa 1: ", self.tiempo_1]
+        l1 = ["Tiempo total: ", self.tiempo_total.total_seconds() // 60, "minutos"]
+        l2 = ["Tiempo etapa 1: ", self.tiempo_1.total_seconds() // 60, "minutos"]
         # l3 = ["Tiempo etapa 2: ", self.tiempo_2]
-        l4 = ["Tiempo etapa 2: ", self.tiempo_3]
+        l4 = ["Tiempo etapa 2: ", self.tiempo_3.total_seconds() // 60, "minutos"]
         # l5 = ["Tiempo etapa 4: ", self.tiempo_4]
-        l6 = ["Tiempo etapa 3: ", self.tiempo_5]
+        l6 = ["Tiempo etapa 3: ", self.tiempo_5.total_seconds() // 60, "minutos"]
 
         with open(self.file_name, mode='a', newline='') as file:
             writer = csv.writer(file)

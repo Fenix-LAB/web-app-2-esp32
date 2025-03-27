@@ -628,7 +628,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.show_color_in_frame(r, g, b)
         self.color_r.setText(str(r))
         self.color_g.setText(str(g))
-        self.color_b.setText(str(b))
+        self.colo_b.setText(str(b))
 
         # Se guardan los datos en un archivo CSV
 

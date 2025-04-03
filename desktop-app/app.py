@@ -626,7 +626,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.valor_2.setText(str(temperatura_2))
         self.valor_3.setText(str(humedad_1))
         self.valor_4.setText(str(RoR))
-        self.graph_t1_t2_ror(temperatura_1, temperatura_2, RoR)
+        self.graph_t1_t2_ror(temperatura_1, temperatura_2, RoR+100) # Se le suma 100 para que la grafica no se vea tan pequeña
         self.graph_humedad_1(humedad_1)
 
         # self.show_color_in_frame(r, g, b)

@@ -115,14 +115,17 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_desconectar.clicked.connect(self.serial_desconect)
 
         # Graficas
-        self.t1_x = list(np.linspace(0, 50, 50))
-        self.t1_y = list(np.linspace(0, 0, 50))
+        self.t1_x = list(np.linspace(0, 720, 720))
+        self.t1_y = list(np.linspace(0, 0, 300))
 
-        self.t2_x = list(np.linspace(0, 50, 50))
-        self.t2_y = list(np.linspace(0, 0, 50))
+        self.t2_x = list(np.linspace(0, 720, 720))
+        self.t2_y = list(np.linspace(0, 0, 300))
 
         self.h1_x = list(np.linspace(0, 50, 50))
         self.h1_y = list(np.linspace(0, 0, 50))
+
+        self.r1_y = list(np.linspace(0, 0, 300))
+        self.r1_x = list(np.linspace(0, 720, 720))
 
         # Creacion de la grafica 1
         pg.setConfigOption('background', '#ebfeff')
@@ -130,10 +133,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.plt = pg.PlotWidget()
         self.graph_1.addWidget(self.plt)
 
-        pg.setConfigOption('background', '#ebfeff')
-        pg.setConfigOption('foreground', '#000000')
-        self.plt2 = pg.PlotWidget()
-        self.graph_2.addWidget(self.plt2)
+        # pg.setConfigOption('background', '#ebfeff')
+        # pg.setConfigOption('foreground', '#000000')
+        # self.plt2 = pg.PlotWidget()
+        # self.graph_2.addWidget(self.plt2)
 
         pg.setConfigOption('background', '#ebfeff')
         pg.setConfigOption('foreground', '#000000')
@@ -455,7 +458,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Y escribir la cabecera
         """
         cabecera_l1 = ["Archivo de datos del dia ", datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S')]
-        cabecera_l2 = ["Etapa", "Fecha", "Hora", "Temperatura_1", "Temperatura_2", "Humedad_1", "Color R", "Color G", "Color B"]
+        cabecera_l2 = ["Etapa", "Fecha", "Hora", "Temperatura_1", "Temperatura_2", "Humedad_1", "RoR"]
 
         with open(self.file_name, mode='w', newline='') as file:
             writer = csv.writer(file)
@@ -613,22 +616,23 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         temperatura_1 = int(datos[0])
         temperatura_2 = int(datos[1])
         humedad_1 = int(datos[2])
+        RoR = int(datos[3])
         # color
-        r = int(datos[3])
-        g = int(datos[4])
-        b = int(datos[5])
+        # r = int(datos[3])
+        # g = int(datos[4])
+        # b = int(datos[5])
 
         self.valor_1.setText(str(temperatura_1))
         self.valor_2.setText(str(temperatura_2))
         self.valor_3.setText(str(humedad_1))
-        self.graph_temperatura_1(temperatura_1)
-        self.graph_temperatura_2(temperatura_2)
+        self.valor_4.setText(str(RoR))
+        self.graph_t1_t2_ror(temperatura_1, temperatura_2, RoR)
         self.graph_humedad_1(humedad_1)
 
-        self.show_color_in_frame(r, g, b)
-        self.color_r.setText(str(r))
-        self.color_g.setText(str(g))
-        self.colo_b.setText(str(b))
+        # self.show_color_in_frame(r, g, b)
+        # self.color_r.setText(str(r))
+        # self.color_g.setText(str(g))
+        # self.colo_b.setText(str(b))
 
         # Se guardan los datos en un archivo CSV
 
@@ -648,7 +652,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # Solo envia cundo hay una etapa activa
         if current_stage_index != 0:
             # Se guardan los datos en un archivo CSV
-            data = [name_stage[current_stage_index - 1], datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1, r, g, b]
+            data = [name_stage[current_stage_index - 1], datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1]
 
             self.save_data(data)
             
@@ -664,6 +668,25 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     # File "C:\Users\reneg\OneDrive\Documentos\Ingenieria y servicios industriales\sistema tostador\Interfaztostadorrv1\rene\app.py", line 519, in graph_temperatura_1
     #     self.t1_y = self.y[1:]
     # TypeError: 'builtin_function_or_method' object is not subscriptable
+    def graph_t1_t2_ror(self, t1, t2, RoR):
+        """
+        Metodo para mostrar los datos en la misma grafica
+        
+        """
+        self.t1_y = self.t1_y[1:]
+        self.t1_y.append(t1)
+
+        self.t2_y = self.t2_y[1:]
+        self.t2_y.append(t2)
+
+        self.r1_y = self.h1_y[1:]
+        self.r1_y.append(RoR)
+
+        self.plt.clear()
+        self.plt.plot(self.t1_x, self.t1_y, pen=pg.mkPen('#FF0000', width=2)) # Rojo
+        self.plt.plot(self.t2_x, self.t2_y, pen=pg.mkPen('#00FF00', width=2))
+        self.plt.plot(self.h1_x, self.h1_y, pen=pg.mkPen('#0000FF', width=2))
+
     def graph_temperatura_1(self, temperatura_1):
         """
         Metodo para mostrar los datos en la grafica

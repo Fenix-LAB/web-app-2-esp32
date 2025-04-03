@@ -779,306 +779,6 @@ font: 77 12pt &quot;Arial Black&quot;;
                   <property name="frameShadow">
                    <enum>QFrame::Raised</enum>
                   </property>
-                  <widget class="QWidget" name="layoutWidget_2">
-                   <property name="geometry">
-                    <rect>
-                     <x>20</x>
-                     <y>140</y>
-                     <width>252</width>
-                     <height>67</height>
-                    </rect>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_16">
-                    <item>
-                     <widget class="QLabel" name="label_18">
-                      <property name="font">
-                       <font>
-                        <family>Arial Black</family>
-                        <pointsize>12</pointsize>
-                        <weight>9</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Kilos Ingresados</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="line_kilos_in">
-                      <property name="minimumSize">
-                       <size>
-                        <width>250</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>230</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">border:3px solid #111111;</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>50</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="layoutWidget_3">
-                   <property name="geometry">
-                    <rect>
-                     <x>20</x>
-                     <y>210</y>
-                     <width>252</width>
-                     <height>67</height>
-                    </rect>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_17">
-                    <item>
-                     <widget class="QLabel" name="label_19">
-                      <property name="font">
-                       <font>
-                        <family>Arial Black</family>
-                        <pointsize>12</pointsize>
-                        <weight>9</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Kilos de Salida</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="line_kilos_out">
-                      <property name="minimumSize">
-                       <size>
-                        <width>250</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>230</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">border:3px solid #111111;</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>40</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="layoutWidget_4">
-                   <property name="geometry">
-                    <rect>
-                     <x>20</x>
-                     <y>280</y>
-                     <width>252</width>
-                     <height>67</height>
-                    </rect>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_18">
-                    <item>
-                     <widget class="QLabel" name="label_21">
-                      <property name="font">
-                       <font>
-                        <family>Arial Black</family>
-                        <pointsize>12</pointsize>
-                        <weight>9</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Lote</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="line_lote">
-                      <property name="minimumSize">
-                       <size>
-                        <width>250</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>230</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">border:3px solid #111111;</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>ABC123</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="layoutWidget_5">
-                   <property name="geometry">
-                    <rect>
-                     <x>20</x>
-                     <y>350</y>
-                     <width>252</width>
-                     <height>67</height>
-                    </rect>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_19">
-                    <item>
-                     <widget class="QLabel" name="label_27">
-                      <property name="font">
-                       <font>
-                        <family>Arial Black</family>
-                        <pointsize>12</pointsize>
-                        <weight>9</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Humedad</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="line_hum">
-                      <property name="minimumSize">
-                       <size>
-                        <width>250</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>230</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">border:3px solid #111111;</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>30</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="layoutWidget">
-                   <property name="geometry">
-                    <rect>
-                     <x>20</x>
-                     <y>0</y>
-                     <width>252</width>
-                     <height>67</height>
-                    </rect>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_14">
-                    <item>
-                     <widget class="QLabel" name="label_15">
-                      <property name="font">
-                       <font>
-                        <family>Arial Black</family>
-                        <pointsize>12</pointsize>
-                        <weight>9</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Cafe</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="line_cafe">
-                      <property name="minimumSize">
-                       <size>
-                        <width>250</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>230</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">border:3px solid #111111;</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Nombre del Cafe</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="layoutWidget">
-                   <property name="geometry">
-                    <rect>
-                     <x>20</x>
-                     <y>70</y>
-                     <width>252</width>
-                     <height>67</height>
-                    </rect>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_15">
-                    <item>
-                     <widget class="QLabel" name="label_14">
-                      <property name="font">
-                       <font>
-                        <family>Arial Black</family>
-                        <pointsize>12</pointsize>
-                        <weight>9</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Tipo de Tostado</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="line_tipo">
-                      <property name="minimumSize">
-                       <size>
-                        <width>250</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>230</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">border:3px solid #111111;</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>(Medio, Alto, Super)</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
                   <widget class="QPushButton" name="btn_guardar">
                    <property name="geometry">
                     <rect>
@@ -1152,6 +852,306 @@ background-color: rgb(255,255,255);</string>
                    </property>
                    <property name="placeholderText">
                     <string>Agregue un comentario si lo considera necesario, se guardara junto al set de datos almacenados.</string>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_15">
+                   <property name="geometry">
+                    <rect>
+                     <x>21</x>
+                     <y>1</y>
+                     <width>50</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Cafe</string>
+                   </property>
+                  </widget>
+                  <widget class="QLineEdit" name="line_cafe">
+                   <property name="geometry">
+                    <rect>
+                     <x>21</x>
+                     <y>36</y>
+                     <width>250</width>
+                     <height>30</height>
+                    </rect>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>230</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">border:3px solid #111111;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Nombre del Cafe</string>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_14">
+                   <property name="geometry">
+                    <rect>
+                     <x>21</x>
+                     <y>71</y>
+                     <width>173</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Tipo de Tostado</string>
+                   </property>
+                  </widget>
+                  <widget class="QLineEdit" name="line_tipo">
+                   <property name="geometry">
+                    <rect>
+                     <x>21</x>
+                     <y>106</y>
+                     <width>250</width>
+                     <height>30</height>
+                    </rect>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>230</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">border:3px solid #111111;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>(Medio, Alto, Super)</string>
+                   </property>
+                  </widget>
+                  <widget class="QLineEdit" name="line_kilos_in">
+                   <property name="geometry">
+                    <rect>
+                     <x>21</x>
+                     <y>176</y>
+                     <width>250</width>
+                     <height>30</height>
+                    </rect>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>230</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">border:3px solid #111111;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>50</string>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_18">
+                   <property name="geometry">
+                    <rect>
+                     <x>21</x>
+                     <y>141</y>
+                     <width>182</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Kilos Ingresados</string>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_19">
+                   <property name="geometry">
+                    <rect>
+                     <x>21</x>
+                     <y>211</y>
+                     <width>163</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Kilos de Salida</string>
+                   </property>
+                  </widget>
+                  <widget class="QLineEdit" name="line_kilos_out">
+                   <property name="geometry">
+                    <rect>
+                     <x>21</x>
+                     <y>246</y>
+                     <width>250</width>
+                     <height>30</height>
+                    </rect>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>230</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">border:3px solid #111111;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>40</string>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_21">
+                   <property name="geometry">
+                    <rect>
+                     <x>21</x>
+                     <y>281</y>
+                     <width>48</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Lote</string>
+                   </property>
+                  </widget>
+                  <widget class="QLineEdit" name="line_lote">
+                   <property name="geometry">
+                    <rect>
+                     <x>21</x>
+                     <y>316</y>
+                     <width>250</width>
+                     <height>30</height>
+                    </rect>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>230</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">border:3px solid #111111;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>ABC123</string>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_27">
+                   <property name="geometry">
+                    <rect>
+                     <x>21</x>
+                     <y>351</y>
+                     <width>102</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Humedad</string>
+                   </property>
+                  </widget>
+                  <widget class="QLineEdit" name="line_hum">
+                   <property name="geometry">
+                    <rect>
+                     <x>21</x>
+                     <y>386</y>
+                     <width>250</width>
+                     <height>30</height>
+                    </rect>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>230</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">border:3px solid #111111;</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>30</string>
                    </property>
                   </widget>
                  </widget>
@@ -1545,7 +1545,7 @@ border-bottom-right-radius:20px;
                   <widget class="QLabel" name="label_24">
                    <property name="geometry">
                     <rect>
-                     <x>60</x>
+                     <x>160</x>
                      <y>250</y>
                      <width>158</width>
                      <height>28</height>
@@ -1561,32 +1561,7 @@ border-bottom-right-radius:20px;
                     </font>
                    </property>
                    <property name="text">
-                    <string>Temperatura 1</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="label_25">
-                   <property name="geometry">
-                    <rect>
-                     <x>290</x>
-                     <y>250</y>
-                     <width>158</width>
-                     <height>28</height>
-                    </rect>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Arial Black</family>
-                     <pointsize>12</pointsize>
-                     <weight>9</weight>
-                     <italic>false</italic>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Temperatura 2</string>
+                    <string>Temperaturas</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -1617,297 +1592,6 @@ border-bottom-right-radius:20px;
                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                    </property>
                   </widget>
-                  <widget class="QWidget" name="layoutWidget">
-                   <property name="geometry">
-                    <rect>
-                     <x>350</x>
-                     <y>520</y>
-                     <width>43</width>
-                     <height>30</height>
-                    </rect>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_11">
-                    <item>
-                     <widget class="QLabel" name="valor_2">
-                      <property name="font">
-                       <font>
-                        <family>Arial Black</family>
-                        <pointsize>12</pointsize>
-                        <weight>9</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>40</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="n_2">
-                      <property name="font">
-                       <font>
-                        <family>Arial Black</family>
-                        <pointsize>12</pointsize>
-                        <weight>9</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>°</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="layoutWidget">
-                   <property name="geometry">
-                    <rect>
-                     <x>230</x>
-                     <y>680</y>
-                     <width>283</width>
-                     <height>30</height>
-                    </rect>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_14">
-                    <property name="spacing">
-                     <number>40</number>
-                    </property>
-                    <item>
-                     <widget class="QLabel" name="timer_5">
-                      <property name="font">
-                       <font>
-                        <family>Arial Black</family>
-                        <pointsize>12</pointsize>
-                        <weight>9</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Tiempo Total:</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="timer_4">
-                      <property name="font">
-                       <font>
-                        <family>Arial Black</family>
-                        <pointsize>12</pointsize>
-                        <weight>9</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>00:00:00</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="layoutWidget">
-                   <property name="geometry">
-                    <rect>
-                     <x>110</x>
-                     <y>520</y>
-                     <width>43</width>
-                     <height>30</height>
-                    </rect>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_7">
-                    <item>
-                     <widget class="QLabel" name="valor_1">
-                      <property name="font">
-                       <font>
-                        <family>Arial Black</family>
-                        <pointsize>12</pointsize>
-                        <weight>9</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>40</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="n_1">
-                      <property name="font">
-                       <font>
-                        <family>Arial Black</family>
-                        <pointsize>12</pointsize>
-                        <weight>9</weight>
-                        <italic>false</italic>
-                        <bold>false</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>°</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="layoutWidget">
-                   <property name="geometry">
-                    <rect>
-                     <x>30</x>
-                     <y>290</y>
-                     <width>676</width>
-                     <height>222</height>
-                    </rect>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_15">
-                    <item>
-                     <widget class="QFrame" name="frame_7">
-                      <property name="enabled">
-                       <bool>true</bool>
-                      </property>
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                        <horstretch>170</horstretch>
-                        <verstretch>170</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>220</width>
-                        <height>220</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>220</width>
-                        <height>220</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QFrame{
-background-color: rgb(240, 250, 255);
-}
-</string>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_20">
-                       <item>
-                        <layout class="QVBoxLayout" name="graph_1"/>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QFrame" name="frame_8">
-                      <property name="enabled">
-                       <bool>true</bool>
-                      </property>
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                        <horstretch>170</horstretch>
-                        <verstretch>170</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>220</width>
-                        <height>220</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>220</width>
-                        <height>220</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QFrame{
-background-color: rgb(240, 250, 255);
-}
-</string>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_21">
-                       <item>
-                        <layout class="QVBoxLayout" name="graph_2"/>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QFrame" name="frame_9">
-                      <property name="enabled">
-                       <bool>true</bool>
-                      </property>
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                        <horstretch>170</horstretch>
-                        <verstretch>170</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>220</width>
-                        <height>220</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>220</width>
-                        <height>220</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QFrame{
-background-color: rgb(240, 250, 255);
-}
-</string>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_24">
-                       <item>
-                        <layout class="QVBoxLayout" name="graph_3"/>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
                   <widget class="QLabel" name="label_23">
                    <property name="geometry">
                     <rect>
@@ -1933,181 +1617,6 @@ background-color: rgb(240, 250, 255);
                     <set>Qt::AlignCenter</set>
                    </property>
                   </widget>
-                  <widget class="QLabel" name="label_28">
-                   <property name="geometry">
-                    <rect>
-                     <x>70</x>
-                     <y>600</y>
-                     <width>158</width>
-                     <height>28</height>
-                    </rect>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Arial Black</family>
-                     <pointsize>12</pointsize>
-                     <weight>9</weight>
-                     <italic>false</italic>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Color</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="color_r">
-                   <property name="geometry">
-                    <rect>
-                     <x>210</x>
-                     <y>610</y>
-                     <width>41</width>
-                     <height>28</height>
-                    </rect>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Arial Black</family>
-                     <pointsize>12</pointsize>
-                     <weight>9</weight>
-                     <italic>false</italic>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>40</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="color_g">
-                   <property name="geometry">
-                    <rect>
-                     <x>310</x>
-                     <y>610</y>
-                     <width>41</width>
-                     <height>28</height>
-                    </rect>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Arial Black</family>
-                     <pointsize>12</pointsize>
-                     <weight>9</weight>
-                     <italic>false</italic>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>40</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="colo_b">
-                   <property name="geometry">
-                    <rect>
-                     <x>410</x>
-                     <y>610</y>
-                     <width>41</width>
-                     <height>28</height>
-                    </rect>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Arial Black</family>
-                     <pointsize>12</pointsize>
-                     <weight>9</weight>
-                     <italic>false</italic>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>40</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="label_29">
-                   <property name="geometry">
-                    <rect>
-                     <x>190</x>
-                     <y>580</y>
-                     <width>81</width>
-                     <height>28</height>
-                    </rect>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Arial Black</family>
-                     <pointsize>12</pointsize>
-                     <weight>9</weight>
-                     <italic>false</italic>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>R</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="label_30">
-                   <property name="geometry">
-                    <rect>
-                     <x>290</x>
-                     <y>580</y>
-                     <width>81</width>
-                     <height>28</height>
-                    </rect>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Arial Black</family>
-                     <pointsize>12</pointsize>
-                     <weight>9</weight>
-                     <italic>false</italic>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>G</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="label_31">
-                   <property name="geometry">
-                    <rect>
-                     <x>390</x>
-                     <y>580</y>
-                     <width>81</width>
-                     <height>28</height>
-                    </rect>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Arial Black</family>
-                     <pointsize>12</pointsize>
-                     <weight>9</weight>
-                     <italic>false</italic>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>B</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
                   <widget class="QFrame" name="frame_rgb">
                    <property name="geometry">
                     <rect>
@@ -2122,6 +1631,352 @@ background-color: rgb(240, 250, 255);
                    </property>
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_25">
+                   <property name="geometry">
+                    <rect>
+                     <x>40</x>
+                     <y>550</y>
+                     <width>158</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Temperatura 1</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_28">
+                   <property name="geometry">
+                    <rect>
+                     <x>290</x>
+                     <y>550</y>
+                     <width>158</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Temperatura 2</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_29">
+                   <property name="geometry">
+                    <rect>
+                     <x>180</x>
+                     <y>620</y>
+                     <width>81</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>RoR</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="valor_4">
+                   <property name="geometry">
+                    <rect>
+                     <x>260</x>
+                     <y>620</y>
+                     <width>41</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>40</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QFrame" name="frame_7">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>31</x>
+                     <y>291</y>
+                     <width>440</width>
+                     <height>220</height>
+                    </rect>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>170</horstretch>
+                     <verstretch>170</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>440</width>
+                     <height>220</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>440</width>
+                     <height>220</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QFrame{
+background-color: rgb(240, 250, 255);
+}
+</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_20">
+                    <item>
+                     <layout class="QVBoxLayout" name="graph_1"/>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QFrame" name="frame_9">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                   <property name="geometry">
+                    <rect>
+                     <x>485</x>
+                     <y>291</y>
+                     <width>220</width>
+                     <height>220</height>
+                    </rect>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>170</horstretch>
+                     <verstretch>170</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>220</width>
+                     <height>220</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>220</width>
+                     <height>220</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QFrame{
+background-color: rgb(240, 250, 255);
+}
+</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_24">
+                    <item>
+                     <layout class="QVBoxLayout" name="graph_3"/>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QLabel" name="valor_2">
+                   <property name="geometry">
+                    <rect>
+                     <x>351</x>
+                     <y>521</y>
+                     <width>26</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>40</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="n_2">
+                   <property name="geometry">
+                    <rect>
+                     <x>384</x>
+                     <y>521</y>
+                     <width>16</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>°</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="valor_1">
+                   <property name="geometry">
+                    <rect>
+                     <x>111</x>
+                     <y>521</y>
+                     <width>26</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>40</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="n_1">
+                   <property name="geometry">
+                    <rect>
+                     <x>144</x>
+                     <y>521</y>
+                     <width>16</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>°</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="timer_5">
+                   <property name="geometry">
+                    <rect>
+                     <x>231</x>
+                     <y>681</y>
+                     <width>149</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Tiempo Total:</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="timer_4">
+                   <property name="geometry">
+                    <rect>
+                     <x>420</x>
+                     <y>681</y>
+                     <width>92</width>
+                     <height>28</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Black</family>
+                     <pointsize>12</pointsize>
+                     <weight>9</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>00:00:00</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
                    </property>
                   </widget>
                  </widget>

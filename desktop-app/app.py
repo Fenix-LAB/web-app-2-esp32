@@ -626,7 +626,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.valor_2.setText(str(temperatura_2))
         self.valor_3.setText(str(humedad_1))
         self.valor_4.setText(str(RoR))
-        self.graph_t1_t2_ror(temperatura_1, temperatura_2, RoR+100) # Se le suma 100 para que la grafica no se vea tan pequeña
+        
         self.graph_humedad_1(humedad_1)
 
         # self.show_color_in_frame(r, g, b)
@@ -655,9 +655,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             data = [name_stage[current_stage_index - 1], datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1]
 
             self.save_data(data)
+
+        if current_stage_index == 2:
+            self.graph_t1_t2_ror(temperatura_1, temperatura_2, (RoR * 4) + 100) # Se le suma 100 para que la grafica no se vea tan pequeña
             
-
-
 
     # ============================ GRAFICAS ============================
     # Metodo para mostrar los datos en la grafica
@@ -668,6 +669,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     # File "C:\Users\reneg\OneDrive\Documentos\Ingenieria y servicios industriales\sistema tostador\Interfaztostadorrv1\rene\app.py", line 519, in graph_temperatura_1
     #     self.t1_y = self.y[1:]
     # TypeError: 'builtin_function_or_method' object is not subscriptable
+    
     def graph_t1_t2_ror(self, t1, t2, RoR):
         """
         Metodo para mostrar los datos en la misma grafica

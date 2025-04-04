@@ -657,7 +657,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.save_data(data)
 
         if current_stage_index == 2:
-            self.graph_t1_t2_ror(temperatura_1, temperatura_2, (RoR * 4) + 100) # Se le suma 100 para que la grafica no se vea tan pequeña
+            self.graph_t1_t2_ror(temperatura_1, temperatura_2, RoR + 100) # Se le suma 100 para que la grafica no se vea tan pequeña
             
 
     # ============================ GRAFICAS ============================

@@ -116,15 +116,15 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Graficas
         self.t1_x = list(np.linspace(0, 720, 720))
-        self.t1_y = list(np.linspace(0, 0, 300))
+        self.t1_y = list(np.linspace(0, 0, 720))
 
         self.t2_x = list(np.linspace(0, 720, 720))
-        self.t2_y = list(np.linspace(0, 0, 300))
+        self.t2_y = list(np.linspace(0, 0, 720))
 
         self.h1_x = list(np.linspace(0, 50, 50))
         self.h1_y = list(np.linspace(0, 0, 50))
 
-        self.r1_y = list(np.linspace(0, 0, 300))
+        self.r1_y = list(np.linspace(0, 0, 720))
         self.r1_x = list(np.linspace(0, 720, 720))
 
         # Creacion de la grafica 1
@@ -681,13 +681,13 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.t2_y = self.t2_y[1:]
         self.t2_y.append(t2)
 
-        self.r1_y = self.h1_y[1:]
+        self.r1_y = self.r1_y[1:]
         self.r1_y.append(RoR)
 
         self.plt.clear()
         self.plt.plot(self.t1_x, self.t1_y, pen=pg.mkPen('#FF0000', width=2)) # Rojo
         self.plt.plot(self.t2_x, self.t2_y, pen=pg.mkPen('#00FF00', width=2))
-        self.plt.plot(self.h1_x, self.h1_y, pen=pg.mkPen('#0000FF', width=2))
+        self.plt.plot(self.r1_x, self.r1_y, pen=pg.mkPen('#0000FF', width=2))
 
     def graph_temperatura_1(self, temperatura_1):
         """

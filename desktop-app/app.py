@@ -115,17 +115,17 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_desconectar.clicked.connect(self.serial_desconect)
 
         # Graficas
-        self.t1_x = list(np.linspace(0, 720, 720))
-        self.t1_y = list(np.linspace(0, 0, 720))
+        self.t1_x = list(np.linspace(0, 540, 540))
+        self.t1_y = list(np.linspace(0, 0, 540))
 
-        self.t2_x = list(np.linspace(0, 720, 720))
-        self.t2_y = list(np.linspace(0, 0, 720))
+        self.t2_x = list(np.linspace(0, 540, 540))
+        self.t2_y = list(np.linspace(0, 0, 540))
 
-        self.h1_x = list(np.linspace(0, 50, 50))
-        self.h1_y = list(np.linspace(0, 0, 50))
+        self.h1_x = list(np.linspace(0, 540, 540))
+        self.h1_y = list(np.linspace(0, 0, 540))
 
-        self.r1_y = list(np.linspace(0, 0, 720))
-        self.r1_x = list(np.linspace(0, 720, 720))
+        self.r1_y = list(np.linspace(0, 0, 540))
+        self.r1_x = list(np.linspace(0, 540, 540))
 
         # Creacion de la grafica 1
         pg.setConfigOption('background', '#ebfeff')
@@ -627,7 +627,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.valor_3.setText(str(humedad_1))
         self.valor_4.setText(str(RoR))
         
-        self.graph_humedad_1(humedad_1)
+        # self.graph_humedad_1(humedad_1)
 
         # self.show_color_in_frame(r, g, b)
         # self.color_r.setText(str(r))
@@ -652,7 +652,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # Solo envia cundo hay una etapa activa
         if current_stage_index != 0:
             # Se guardan los datos en un archivo CSV
-            data = [name_stage[current_stage_index - 1], datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1]
+            data = [name_stage[current_stage_index - 1], datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1, RoR]
 
             self.save_data(data)
 

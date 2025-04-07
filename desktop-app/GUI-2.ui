@@ -1286,8 +1286,8 @@ font: 77 12pt &quot;Arial Black&quot;;
                   <widget class="QLabel" name="valor_3">
                    <property name="geometry">
                     <rect>
-                     <x>590</x>
-                     <y>520</y>
+                     <x>660</x>
+                     <y>680</y>
                      <width>41</width>
                      <height>28</height>
                     </rect>
@@ -1570,8 +1570,8 @@ border-bottom-right-radius:20px;
                   <widget class="QLabel" name="label_26">
                    <property name="geometry">
                     <rect>
-                     <x>540</x>
-                     <y>250</y>
+                     <x>550</x>
+                     <y>680</y>
                      <width>102</width>
                      <height>28</height>
                     </rect>
@@ -1617,27 +1617,11 @@ border-bottom-right-radius:20px;
                     <set>Qt::AlignCenter</set>
                    </property>
                   </widget>
-                  <widget class="QFrame" name="frame_rgb">
-                   <property name="geometry">
-                    <rect>
-                     <x>510</x>
-                     <y>580</y>
-                     <width>51</width>
-                     <height>51</height>
-                    </rect>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                  </widget>
                   <widget class="QLabel" name="label_25">
                    <property name="geometry">
                     <rect>
-                     <x>40</x>
-                     <y>550</y>
+                     <x>20</x>
+                     <y>620</y>
                      <width>158</width>
                      <height>28</height>
                     </rect>
@@ -1661,8 +1645,8 @@ border-bottom-right-radius:20px;
                   <widget class="QLabel" name="label_28">
                    <property name="geometry">
                     <rect>
-                     <x>290</x>
-                     <y>550</y>
+                     <x>320</x>
+                     <y>620</y>
                      <width>158</width>
                      <height>28</height>
                     </rect>
@@ -1686,7 +1670,7 @@ border-bottom-right-radius:20px;
                   <widget class="QLabel" name="label_29">
                    <property name="geometry">
                     <rect>
-                     <x>180</x>
+                     <x>610</x>
                      <y>620</y>
                      <width>81</width>
                      <height>28</height>
@@ -1711,7 +1695,7 @@ border-bottom-right-radius:20px;
                   <widget class="QLabel" name="valor_4">
                    <property name="geometry">
                     <rect>
-                     <x>260</x>
+                     <x>680</x>
                      <y>620</y>
                      <width>41</width>
                      <height>28</height>
@@ -1741,8 +1725,8 @@ border-bottom-right-radius:20px;
                     <rect>
                      <x>31</x>
                      <y>291</y>
-                     <width>440</width>
-                     <height>220</height>
+                     <width>660</width>
+                     <height>310</height>
                     </rect>
                    </property>
                    <property name="sizePolicy">
@@ -1753,14 +1737,14 @@ border-bottom-right-radius:20px;
                    </property>
                    <property name="minimumSize">
                     <size>
-                     <width>440</width>
-                     <height>220</height>
+                     <width>660</width>
+                     <height>310</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>440</width>
-                     <height>220</height>
+                     <width>660</width>
+                     <height>310</height>
                     </size>
                    </property>
                    <property name="styleSheet">
@@ -1781,59 +1765,11 @@ background-color: rgb(240, 250, 255);
                     </item>
                    </layout>
                   </widget>
-                  <widget class="QFrame" name="frame_9">
-                   <property name="enabled">
-                    <bool>true</bool>
-                   </property>
-                   <property name="geometry">
-                    <rect>
-                     <x>485</x>
-                     <y>291</y>
-                     <width>220</width>
-                     <height>220</height>
-                    </rect>
-                   </property>
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                     <horstretch>170</horstretch>
-                     <verstretch>170</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="minimumSize">
-                    <size>
-                     <width>220</width>
-                     <height>220</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>220</width>
-                     <height>220</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">QFrame{
-background-color: rgb(240, 250, 255);
-}
-</string>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_24">
-                    <item>
-                     <layout class="QVBoxLayout" name="graph_3"/>
-                    </item>
-                   </layout>
-                  </widget>
                   <widget class="QLabel" name="valor_2">
                    <property name="geometry">
                     <rect>
-                     <x>351</x>
-                     <y>521</y>
+                     <x>490</x>
+                     <y>620</y>
                      <width>26</width>
                      <height>28</height>
                     </rect>
@@ -1857,8 +1793,8 @@ background-color: rgb(240, 250, 255);
                   <widget class="QLabel" name="n_2">
                    <property name="geometry">
                     <rect>
-                     <x>384</x>
-                     <y>521</y>
+                     <x>520</x>
+                     <y>620</y>
                      <width>16</width>
                      <height>28</height>
                     </rect>
@@ -1882,8 +1818,8 @@ background-color: rgb(240, 250, 255);
                   <widget class="QLabel" name="valor_1">
                    <property name="geometry">
                     <rect>
-                     <x>111</x>
-                     <y>521</y>
+                     <x>190</x>
+                     <y>620</y>
                      <width>26</width>
                      <height>28</height>
                     </rect>
@@ -1907,8 +1843,8 @@ background-color: rgb(240, 250, 255);
                   <widget class="QLabel" name="n_1">
                    <property name="geometry">
                     <rect>
-                     <x>144</x>
-                     <y>521</y>
+                     <x>220</x>
+                     <y>620</y>
                      <width>16</width>
                      <height>28</height>
                     </rect>
@@ -1932,7 +1868,7 @@ background-color: rgb(240, 250, 255);
                   <widget class="QLabel" name="timer_5">
                    <property name="geometry">
                     <rect>
-                     <x>231</x>
+                     <x>20</x>
                      <y>681</y>
                      <width>149</width>
                      <height>28</height>
@@ -1957,7 +1893,7 @@ background-color: rgb(240, 250, 255);
                   <widget class="QLabel" name="timer_4">
                    <property name="geometry">
                     <rect>
-                     <x>420</x>
+                     <x>180</x>
                      <y>681</y>
                      <width>92</width>
                      <height>28</height>

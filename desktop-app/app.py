@@ -141,7 +141,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         pg.setConfigOption('background', '#ebfeff')
         pg.setConfigOption('foreground', '#000000')
         self.plt3 = pg.PlotWidget()
-        self.graph_3.addWidget(self.plt3)
+        # self.graph_3.addWidget(self.plt3)
 
         # Asociacion de metodos
         self.serial.readyRead.connect(self.read_data)

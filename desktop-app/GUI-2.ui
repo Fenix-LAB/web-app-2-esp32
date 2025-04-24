@@ -1509,7 +1509,7 @@ border-bottom-right-radius:20px;
                     </font>
                    </property>
                    <property name="text">
-                    <string>Temperatura 1</string>
+                    <string>Temp Grano</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -1534,7 +1534,7 @@ border-bottom-right-radius:20px;
                     </font>
                    </property>
                    <property name="text">
-                    <string>Temperatura 2</string>
+                    <string>Temp Horno</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>

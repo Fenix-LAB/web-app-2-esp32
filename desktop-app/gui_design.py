@@ -130,21 +130,12 @@ class Ui_MainWindow(object):
         self.frame_menu.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_menu.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_menu.setObjectName("frame_menu")
-        self.layoutWidget_2 = QtWidgets.QWidget(self.frame_menu)
-        self.layoutWidget_2.setGeometry(QtCore.QRect(30, 430, 234, 71))
-        self.layoutWidget_2.setObjectName("layoutWidget_2")
-        self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.layoutWidget_2)
-        self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        spacerItem1 = QtWidgets.QSpacerItem(28, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_7.addItem(spacerItem1)
-        self.verticalLayout_5 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.label_5 = QtWidgets.QLabel(self.layoutWidget_2)
+        self.label_5 = QtWidgets.QLabel(self.frame_menu)
+        self.label_5.setGeometry(QtCore.QRect(100, 432, 84, 28))
         self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setObjectName("label_5")
-        self.verticalLayout_5.addWidget(self.label_5)
-        self.comboBox_camara = QtWidgets.QComboBox(self.layoutWidget_2)
+        self.comboBox_camara = QtWidgets.QComboBox(self.frame_menu)
+        self.comboBox_camara.setGeometry(QtCore.QRect(67, 467, 170, 32))
         self.comboBox_camara.setMinimumSize(QtCore.QSize(150, 0))
         self.comboBox_camara.setMaximumSize(QtCore.QSize(220, 16777215))
         self.comboBox_camara.setStyleSheet("QComboBox{\n"
@@ -172,84 +163,30 @@ class Ui_MainWindow(object):
 "color:rgb(218,0,55);\n"
 "}")
         self.comboBox_camara.setObjectName("comboBox_camara")
-        self.verticalLayout_5.addWidget(self.comboBox_camara)
-        self.horizontalLayout_7.addLayout(self.verticalLayout_5)
-        spacerItem2 = QtWidgets.QSpacerItem(18, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_7.addItem(spacerItem2)
-        self.widget = QtWidgets.QWidget(self.frame_menu)
-        self.widget.setObjectName("widget")
-        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.widget)
-        self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        spacerItem3 = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem3)
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.label_2 = QtWidgets.QLabel(self.widget)
-        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_2.setObjectName("label_2")
-        self.verticalLayout_3.addWidget(self.label_2)
-        self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_4.setSpacing(20)
-        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.comboBox_puerto = QtWidgets.QComboBox(self.widget)
-        self.comboBox_puerto.setMinimumSize(QtCore.QSize(150, 0))
-        self.comboBox_puerto.setStyleSheet("QComboBox{\n"
-"border:3px solid #111111;\n"
-"border-radius: 5px;\n"
-"min-width: 6em;\n"
-"background-color: rgb(230, 240, 255);\n"
-"font: 87 10pt \"Arial Black\";\n"
-"}\n"
-"\n"
-"QComboBox::drop-down{\n"
-"subcontrol-origin:padding;\n"
-"subcontrol-position: top right;\n"
-"width: 15px;\n"
-"border-left-width: 3px;\n"
-"border-left-color:#111111;\n"
-"border-left-style:solid;\n"
-"border-top-right-radius: 4px;\n"
-"border-bottom-right-radius: 4px;\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView{\n"
-"background:#2c2c2c;\n"
-"selection-background-color:#ff0037;\n"
-"color:rgb(218,0,55);\n"
-"}")
-        self.comboBox_puerto.setObjectName("comboBox_puerto")
-        self.horizontalLayout_4.addWidget(self.comboBox_puerto)
-        self.btn_actualizar = QtWidgets.QPushButton(self.widget)
-        self.btn_actualizar.setMinimumSize(QtCore.QSize(40, 40))
-        self.btn_actualizar.setMaximumSize(QtCore.QSize(40, 16777215))
-        self.btn_actualizar.setStyleSheet("border-radius:18px;")
-        self.btn_actualizar.setText("")
+        self.btn_conectar = QtWidgets.QPushButton(self.frame_menu)
+        self.btn_conectar.setGeometry(QtCore.QRect(57, 252, 190, 50))
+        self.btn_conectar.setMinimumSize(QtCore.QSize(190, 50))
+        self.btn_conectar.setMaximumSize(QtCore.QSize(190, 50))
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("icons/rotate-cw (1).svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_actualizar.setIcon(icon2)
-        self.btn_actualizar.setIconSize(QtCore.QSize(25, 25))
-        self.btn_actualizar.setObjectName("btn_actualizar")
-        self.horizontalLayout_4.addWidget(self.btn_actualizar)
-        self.verticalLayout_3.addLayout(self.horizontalLayout_4)
-        self.horizontalLayout_6.addLayout(self.verticalLayout_3)
-        spacerItem4 = QtWidgets.QSpacerItem(13, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem4)
-        self.widget1 = QtWidgets.QWidget(self.frame_menu)
-        self.widget1.setGeometry(QtCore.QRect(30, 120, 234, 71))
-        self.widget1.setObjectName("widget1")
-        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.widget1)
-        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        spacerItem5 = QtWidgets.QSpacerItem(28, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem5)
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.label_4 = QtWidgets.QLabel(self.widget1)
+        icon2.addPixmap(QtGui.QPixmap("icons/log-in.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_conectar.setIcon(icon2)
+        self.btn_conectar.setIconSize(QtCore.QSize(30, 30))
+        self.btn_conectar.setObjectName("btn_conectar")
+        self.btn_desconectar = QtWidgets.QPushButton(self.frame_menu)
+        self.btn_desconectar.setGeometry(QtCore.QRect(57, 317, 190, 50))
+        self.btn_desconectar.setMinimumSize(QtCore.QSize(190, 50))
+        self.btn_desconectar.setMaximumSize(QtCore.QSize(190, 50))
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("icons/log-out.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_desconectar.setIcon(icon3)
+        self.btn_desconectar.setIconSize(QtCore.QSize(30, 30))
+        self.btn_desconectar.setObjectName("btn_desconectar")
+        self.label_4 = QtWidgets.QLabel(self.frame_menu)
+        self.label_4.setGeometry(QtCore.QRect(90, 122, 107, 28))
         self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
-        self.verticalLayout_2.addWidget(self.label_4)
-        self.comboBox_velocidad = QtWidgets.QComboBox(self.widget1)
+        self.comboBox_velocidad = QtWidgets.QComboBox(self.frame_menu)
+        self.comboBox_velocidad.setGeometry(QtCore.QRect(67, 157, 170, 32))
         self.comboBox_velocidad.setMinimumSize(QtCore.QSize(150, 0))
         self.comboBox_velocidad.setMaximumSize(QtCore.QSize(220, 16777215))
         self.comboBox_velocidad.setStyleSheet("QComboBox{\n"
@@ -277,42 +214,49 @@ class Ui_MainWindow(object):
 "color:rgb(218,0,55);\n"
 "}")
         self.comboBox_velocidad.setObjectName("comboBox_velocidad")
-        self.verticalLayout_2.addWidget(self.comboBox_velocidad)
-        self.horizontalLayout_5.addLayout(self.verticalLayout_2)
-        spacerItem6 = QtWidgets.QSpacerItem(18, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem6)
-        self.widget2 = QtWidgets.QWidget(self.frame_menu)
-        self.widget2.setGeometry(QtCore.QRect(30, 250, 244, 119))
-        self.widget2.setObjectName("widget2")
-        self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.widget2)
-        self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
-        spacerItem7 = QtWidgets.QSpacerItem(18, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_9.addItem(spacerItem7)
-        self.verticalLayout_4 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_4.setSpacing(15)
-        self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.btn_conectar = QtWidgets.QPushButton(self.widget2)
-        self.btn_conectar.setMinimumSize(QtCore.QSize(190, 50))
-        self.btn_conectar.setMaximumSize(QtCore.QSize(190, 50))
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("icons/log-in.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_conectar.setIcon(icon3)
-        self.btn_conectar.setIconSize(QtCore.QSize(30, 30))
-        self.btn_conectar.setObjectName("btn_conectar")
-        self.verticalLayout_4.addWidget(self.btn_conectar)
-        self.btn_desconectar = QtWidgets.QPushButton(self.widget2)
-        self.btn_desconectar.setMinimumSize(QtCore.QSize(190, 50))
-        self.btn_desconectar.setMaximumSize(QtCore.QSize(190, 50))
+        self.label_2 = QtWidgets.QLabel(self.frame_menu)
+        self.label_2.setGeometry(QtCore.QRect(70, 13, 142, 28))
+        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_2.setObjectName("label_2")
+        self.comboBox_puerto = QtWidgets.QComboBox(self.frame_menu)
+        self.comboBox_puerto.setGeometry(QtCore.QRect(34, 53, 170, 32))
+        self.comboBox_puerto.setMinimumSize(QtCore.QSize(150, 0))
+        self.comboBox_puerto.setStyleSheet("QComboBox{\n"
+"border:3px solid #111111;\n"
+"border-radius: 5px;\n"
+"min-width: 6em;\n"
+"background-color: rgb(230, 240, 255);\n"
+"font: 87 10pt \"Arial Black\";\n"
+"}\n"
+"\n"
+"QComboBox::drop-down{\n"
+"subcontrol-origin:padding;\n"
+"subcontrol-position: top right;\n"
+"width: 15px;\n"
+"border-left-width: 3px;\n"
+"border-left-color:#111111;\n"
+"border-left-style:solid;\n"
+"border-top-right-radius: 4px;\n"
+"border-bottom-right-radius: 4px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView{\n"
+"background:#2c2c2c;\n"
+"selection-background-color:#ff0037;\n"
+"color:rgb(218,0,55);\n"
+"}")
+        self.comboBox_puerto.setObjectName("comboBox_puerto")
+        self.btn_actualizar = QtWidgets.QPushButton(self.frame_menu)
+        self.btn_actualizar.setGeometry(QtCore.QRect(224, 49, 40, 40))
+        self.btn_actualizar.setMinimumSize(QtCore.QSize(40, 40))
+        self.btn_actualizar.setMaximumSize(QtCore.QSize(40, 16777215))
+        self.btn_actualizar.setStyleSheet("border-radius:18px;")
+        self.btn_actualizar.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("icons/log-out.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_desconectar.setIcon(icon4)
-        self.btn_desconectar.setIconSize(QtCore.QSize(30, 30))
-        self.btn_desconectar.setObjectName("btn_desconectar")
-        self.verticalLayout_4.addWidget(self.btn_desconectar)
-        self.horizontalLayout_9.addLayout(self.verticalLayout_4)
-        spacerItem8 = QtWidgets.QSpacerItem(18, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_9.addItem(spacerItem8)
+        icon4.addPixmap(QtGui.QPixmap("icons/rotate-cw (1).svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_actualizar.setIcon(icon4)
+        self.btn_actualizar.setIconSize(QtCore.QSize(25, 25))
+        self.btn_actualizar.setObjectName("btn_actualizar")
         self.horizontalLayout_3.addWidget(self.frame_menu)
         self.frame_paginas = QtWidgets.QFrame(self.frame_contenido)
         self.frame_paginas.setStyleSheet("QLabel{\n"
@@ -930,10 +874,10 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_3.setText(_translate("MainWindow", "Analisis Tostado de Cafe v1"))
         self.label_5.setText(_translate("MainWindow", "Camara"))
-        self.label_2.setText(_translate("MainWindow", "Puerto Serial"))
-        self.label_4.setText(_translate("MainWindow", "Velocidad"))
         self.btn_conectar.setText(_translate("MainWindow", "  Conectar"))
         self.btn_desconectar.setText(_translate("MainWindow", "Desconectar"))
+        self.label_4.setText(_translate("MainWindow", "Velocidad"))
+        self.label_2.setText(_translate("MainWindow", "Puerto Serial"))
         self.btn_guardar.setText(_translate("MainWindow", "Guardar"))
         self.label_16.setText(_translate("MainWindow", "Comentarios"))
         self.text_cometarios.setPlaceholderText(_translate("MainWindow", "Agregue un comentario si lo considera necesario, se guardara junto al set de datos almacenados."))

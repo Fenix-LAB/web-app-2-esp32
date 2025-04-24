@@ -233,7 +233,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         
         # Configurar el combo box con las cámaras disponibles
         self.setup_camera_combobox()
-        self.combo_cameras.currentIndexChanged.connect(self.change_camera)
+        self.comboBox_camara.currentIndexChanged.connect(self.change_camera)
         
         # Iniciar la cámara
         self.camera_thread.start()
@@ -541,7 +541,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Y escribir la cabecera
         """
         cabecera_l1 = ["Archivo de datos del dia ", datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S')]
-        cabecera_l2 = ["Etapa", "Fecha", "Hora", "Temperatura_1", "Temperatura_2", "Humedad_1", "RoR"]
+        cabecera_l2 = ["Etapa", "Fecha", "Hora", "Temperatura_1", "Temperatura_2", "Humedad_1", "RoR", "R", "G", "B"]
 
         with open(self.file_name, mode='w', newline='') as file:
             writer = csv.writer(file)
@@ -835,9 +835,16 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # Metodo del boton cerrar
     def control_btn_cerrar(self):
+        # Detener primero los hilos
+        if hasattr(self, 'camera_thread') and self.camera_thread.isRunning():
+            self.camera_thread.stop()
+        
+        # Opcional: Detener otros hilos (ej: TimerThread)
+        if hasattr(self, 'timer_thread') and self.timer_thread.isRunning():
+            self.timer_thread.stop()
+        
+        # Cerrar la ventana
         self.close()
-        # cap.release()
-        self.label.clear()
 
     # Metodo del boton de ventana normal
     # def control_btn_normal(self):
@@ -926,7 +933,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             if cap.isOpened():
                 self.comboBox_camara.addItem(f"Cámara {i}", i)
                 cap.release()
-        
         if self.comboBox_camara.count() == 0:
             self.comboBox_camara.addItem("No se encontraron cámaras", -1)
     
@@ -939,9 +945,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     
     def update_camera_view(self, pixmap):
         """Actualiza el QLabel con el frame de la cámara."""
-        self.label_camera.setPixmap(pixmap.scaled(
-            self.label_camera.width(),
-            self.label_camera.height(),
+        self.video.setPixmap(pixmap.scaled(
+            self.video.width(),
+            self.video.height(),
             Qt.KeepAspectRatio
         ))
     

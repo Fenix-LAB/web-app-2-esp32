@@ -227,6 +227,17 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.enable_button(self.btn_iniciar_1)
         self.disable_button(self.btn_desconectar)
 
+        # Inicializar el hilo de la cámara
+        self.camera_thread = CameraThread()
+        self.camera_thread.frame_ready.connect(self.update_camera_view)
+        
+        # Configurar el combo box con las cámaras disponibles
+        self.setup_camera_combobox()
+        self.combo_cameras.currentIndexChanged.connect(self.change_camera)
+        
+        # Iniciar la cámara
+        self.camera_thread.start()
+
     # def set_progressbar_2_zero(self):
     #     """
     #     Metodo para poner en 0 todas las barras de progreso
@@ -902,6 +913,42 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.serial.isOpen():
             self.serial.write(data.encode())
             #print("enviado")
+
+    #### CAMERA ####
+
+    def setup_camera_combobox(self):
+        """Rellena el combo box con las cámaras disponibles."""
+        self.comboBox_camara.clear()
+        max_cameras_to_test = 5  # Número máximo de cámaras a probar
+        
+        for i in range(max_cameras_to_test):
+            cap = cv2.VideoCapture(i)
+            if cap.isOpened():
+                self.comboBox_camara.addItem(f"Cámara {i}", i)
+                cap.release()
+        
+        if self.comboBox_camara.count() == 0:
+            self.comboBox_camara.addItem("No se encontraron cámaras", -1)
+    
+    def change_camera(self, index):
+        """Cambia la cámara cuando se selecciona un ítem del combo box."""
+        if index >= 0:
+            camera_index = self.comboBox_camara.itemData(index)
+            if camera_index != -1:  # -1 sería el caso "No hay cámaras"
+                self.camera_thread.set_camera(camera_index)
+    
+    def update_camera_view(self, pixmap):
+        """Actualiza el QLabel con el frame de la cámara."""
+        self.label_camera.setPixmap(pixmap.scaled(
+            self.label_camera.width(),
+            self.label_camera.height(),
+            Qt.KeepAspectRatio
+        ))
+    
+    def closeEvent(self, event):
+        if self.camera_thread.isRunning():
+            self.camera_thread.stop()
+        event.accept()
 
 
 if __name__ == "__main__":

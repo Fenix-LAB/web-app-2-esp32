@@ -729,8 +729,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Get dominant color from camera thread
         r, g, b = self.camera_thread.get_dominant_color()
-        print(f"Dominant color: {r}, {g}, {b}")
-        self.frame_color.setStyleSheet(f"background-color: rgb({r}, {g}, {b});")
+        print(f"Dominant color: {b}, {g}, {r}")
+        self.frame_color.setStyleSheet(f"background-color: rgb({b}, {g}, {r});")
 
         # self.show_color_in_frame(r, g, b)
         # self.color_r.setText(str(r))
@@ -755,7 +755,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # Solo envia cundo hay una etapa activa
         if current_stage_index != 0:
             # Se guardan los datos en un archivo CSV
-            data = [name_stage[current_stage_index - 1], datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1, RoR, r, g, b]
+            data = [name_stage[current_stage_index - 1], datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1, RoR, b, g, r]
 
             self.save_data(data)
 

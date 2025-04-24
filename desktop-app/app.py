@@ -7,6 +7,8 @@ from datetime import datetime
 import csv
 import pyqtgraph as pg
 import numpy as np
+import cv2
+
 
 from PyQt5.QtCore import QThread, pyqtSignal, QDateTime
 
@@ -59,6 +61,76 @@ class TimerThread(QThread):
         Reinicia el cronómetro.
         """
         self.start_time = QDateTime.currentDateTime()
+
+class CameraThread(QThread):
+    frame_ready = pyqtSignal(QPixmap)
+    
+    def __init__(self):
+        super().__init__()
+        self.camera_index = 0  # Valor por defecto
+        self.running = False
+        self.current_frame = None
+        self.mutex = QMutex()
+        self.cap = None  # Objeto de captura de OpenCV
+    
+    def set_camera(self, index):
+        """Cambia la cámara en tiempo real."""
+        self.mutex.lock()
+        self.camera_index = index
+        if self.cap is not None:
+            self.cap.release()  # Libera la cámara actual
+        self.cap = cv2.VideoCapture(index)  # Abre la nueva cámara
+        self.mutex.unlock()
+    
+    def run(self):
+        self.running = True
+        self.cap = cv2.VideoCapture(self.camera_index)  # Inicializa la cámara
+        
+        while self.running:
+            self.mutex.lock()
+            ret, frame = self.cap.read()
+            self.mutex.unlock()
+            
+            if not ret:
+                print("Error al capturar el frame")
+                continue
+            
+            # Procesamiento del frame
+            self.mutex.lock()
+            self.current_frame = frame.copy()
+            self.mutex.unlock()
+            
+            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            h, w, ch = rgb_frame.shape
+            qt_image = QImage(rgb_frame.data, w, h, ch * w, QImage.Format_RGB888)
+            self.frame_ready.emit(QPixmap.fromImage(qt_image))
+    
+    def get_dominant_color(self):
+        """
+        Retorna el color predominante en el frame actual (en formato BGR).
+        Returns:
+            tuple: (B, G, R) del color predominante.
+        """
+        self.mutex.lock()
+        if self.current_frame is None:
+            self.mutex.unlock()
+            return (0, 0, 0)  # Negro por defecto si no hay frame
+        
+        frame = self.current_frame.copy()
+        self.mutex.unlock()
+        
+        # Calcula el color predominante usando k-means (simplificado)
+        pixels = frame.reshape(-1, 3).astype(np.float32)
+        criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
+        _, labels, centers = cv2.kmeans(pixels, 1, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
+        dominant_color = centers[0].astype(int)
+        return tuple(dominant_color)  # (B, G, R)
+    
+    def stop(self):
+        self.running = False
+        if self.cap is not None:
+            self.cap.release()
+        self.wait()
 
 #Clase de la ventana heredada de la interfaz "gui_design.py"
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):

@@ -21,6 +21,7 @@ class TimerThread(QThread):
         self.format = format  # Formato de tiempo: "mm:ss" o "hh:mm:ss"
         self.running = False  # Estado del cronómetro
         self.start_time = None  # Tiempo de inicio
+        self.region_size = 100  
 
     def run(self):
         self.running = True
@@ -64,67 +65,81 @@ class TimerThread(QThread):
 
 class CameraThread(QThread):
     frame_ready = pyqtSignal(QPixmap)
+    dominant_color_changed = pyqtSignal(tuple)  # Nueva señal para el color dominante (R,G,B)
     
-    def __init__(self):
+    def __init__(self, camera_index=0, region_size=100):
         super().__init__()
-        self.camera_index = 0  # Valor por defecto
+        self.camera_index = camera_index
+        self.region_size = region_size  # Tamaño del área de análisis
         self.running = False
         self.current_frame = None
+        self.dominant_color = (0, 0, 0)  # (R, G, B)
         self.mutex = QMutex()
-        self.cap = None  # Objeto de captura de OpenCV
-    
-    def set_camera(self, index):
-        """Cambia la cámara en tiempo real."""
-        self.mutex.lock()
-        self.camera_index = index
-        if self.cap is not None:
-            self.cap.release()  # Libera la cámara actual
-        self.cap = cv2.VideoCapture(index)  # Abre la nueva cámara
-        self.mutex.unlock()
-    
+        self.cap = None
+        
     def run(self):
         self.running = True
-        self.cap = cv2.VideoCapture(self.camera_index)  # Inicializa la cámara
+        self.cap = cv2.VideoCapture(self.camera_index)
         
         while self.running:
-            self.mutex.lock()
             ret, frame = self.cap.read()
-            self.mutex.unlock()
-            
             if not ret:
-                print("Error al capturar el frame")
                 continue
-            
+                
             # Procesamiento del frame
+            processed_frame = self.enhance_colors(frame)
+            
+            # Definir región de interés (centrada)
+            h, w, _ = processed_frame.shape
+            cx, cy = w // 2, h // 2
+            half = self.region_size // 2
+            x1, y1 = max(cx - half, 0), max(cy - half, 0)
+            x2, y2 = min(cx + half, w), min(cy + half, h)
+            roi = processed_frame[y1:y2, x1:x2]
+            
+            # Calcular color dominante si hay ROI válida
+            if roi.size > 0:
+                self.calculate_dominant_color(roi)
+                # Dibujar rectángulo en el frame
+                cv2.rectangle(processed_frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            
+            # Guardar frame actual y emitir
             self.mutex.lock()
-            self.current_frame = frame.copy()
+            self.current_frame = processed_frame.copy()
             self.mutex.unlock()
             
-            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            # Convertir a QPixmap y emitir
+            rgb_frame = cv2.cvtColor(processed_frame, cv2.COLOR_BGR2RGB)
             h, w, ch = rgb_frame.shape
             qt_image = QImage(rgb_frame.data, w, h, ch * w, QImage.Format_RGB888)
             self.frame_ready.emit(QPixmap.fromImage(qt_image))
     
+    def enhance_colors(self, frame):
+        """Mejora los colores del frame (similar al código original)"""
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        h, s, v = cv2.split(hsv)
+        s = cv2.add(s, 10)
+        v = cv2.add(v, 40)
+        hsv_enhanced = cv2.merge([h, s, v])
+        return cv2.cvtColor(hsv_enhanced, cv2.COLOR_HSV2BGR)
+    
+    def calculate_dominant_color(self, roi):
+        """Calcula el color dominante en la ROI (BGR -> RGB)"""
+        roi_rgb = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
+        reshaped = roi_rgb.reshape(-1, 3)
+        colors, counts = np.unique(reshaped, axis=0, return_counts=True)
+        bgr_dominant = colors[counts.argmax()]
+        
+        # Convertir a RGB y guardar
+        self.dominant_color = (bgr_dominant[2], bgr_dominant[1], bgr_dominant[0])
+        self.dominant_color_changed.emit(self.dominant_color)
+    
     def get_dominant_color(self):
-        """
-        Retorna el color predominante en el frame actual (en formato BGR).
-        Returns:
-            tuple: (B, G, R) del color predominante.
-        """
+        """Retorna el último color dominante calculado (R, G, B)"""
         self.mutex.lock()
-        if self.current_frame is None:
-            self.mutex.unlock()
-            return (0, 0, 0)  # Negro por defecto si no hay frame
-        
-        frame = self.current_frame.copy()
+        color = self.dominant_color
         self.mutex.unlock()
-        
-        # Calcula el color predominante usando k-means (simplificado)
-        pixels = frame.reshape(-1, 3).astype(np.float32)
-        criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
-        _, labels, centers = cv2.kmeans(pixels, 1, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
-        dominant_color = centers[0].astype(int)
-        return tuple(dominant_color)  # (B, G, R)
+        return color
     
     def stop(self):
         self.running = False
@@ -712,6 +727,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         
         # self.graph_humedad_1(humedad_1)
 
+        # Get dominant color from camera thread
+        r, g, b = self.camera_thread.get_dominant_color()
+        print(f"Dominant color: {r}, {g}, {b}")
+        self.frame_color.setStyleSheet(f"background-color: rgb({r}, {g}, {b});")
+
         # self.show_color_in_frame(r, g, b)
         # self.color_r.setText(str(r))
         # self.color_g.setText(str(g))
@@ -735,7 +755,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # Solo envia cundo hay una etapa activa
         if current_stage_index != 0:
             # Se guardan los datos en un archivo CSV
-            data = [name_stage[current_stage_index - 1], datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1, RoR]
+            data = [name_stage[current_stage_index - 1], datetime.now().strftime('%Y-%m-%d'), datetime.now().strftime('%H:%M:%S'), temperatura_1, temperatura_2, humedad_1, RoR, r, g, b]
 
             self.save_data(data)
 
@@ -840,8 +860,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.camera_thread.stop()
         
         # Opcional: Detener otros hilos (ej: TimerThread)
-        if hasattr(self, 'timer_thread') and self.timer_thread.isRunning():
-            self.timer_thread.stop()
+        # if hasattr(self, 'timer_thread') and self.timer_thread.isRunning():
+        #     self.timer_thread.stop()
         
         # Cerrar la ventana
         self.close()
@@ -931,7 +951,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         for i in range(max_cameras_to_test):
             cap = cv2.VideoCapture(i)
             if cap.isOpened():
-                self.comboBox_camara.addItem(f"Cámara {i}", i)
+                self.comboBox_camara.addItem(f"{i}", i)
                 cap.release()
         if self.comboBox_camara.count() == 0:
             self.comboBox_camara.addItem("No se encontraron cámaras", -1)

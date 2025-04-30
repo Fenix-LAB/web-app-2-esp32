@@ -77,6 +77,32 @@ class CameraThread(QThread):
         self.mutex = QMutex()
         self.cap = None
         
+    def set_camera(self, index):
+        """Cambia la cámara de manera segura"""
+        self.mutex.lock()
+        
+        try:
+            # 1. Liberar la cámara actual si existe
+            if self.cap is not None:
+                self.cap.release()
+            
+            # 2. Intentar abrir la nueva cámara
+            self.cap = cv2.VideoCapture(index)
+            if not self.cap.isOpened():
+                raise ValueError(f"No se pudo abrir la cámara con índice {index}")
+            
+            self.camera_index = index
+            print(f"Cámara cambiada a índice {index} correctamente")
+            
+        except Exception as e:
+            print(f"Error al cambiar cámara: {str(e)}")
+            # Recuperar cámara anterior si es posible
+            if hasattr(self, 'camera_index'):
+                self.cap = cv2.VideoCapture(self.camera_index)
+        
+        finally:
+            self.mutex.unlock()
+
     def run(self):
         self.running = True
         self.cap = cv2.VideoCapture(self.camera_index)
@@ -247,7 +273,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.camera_thread.frame_ready.connect(self.update_camera_view)
         
         # Configurar el combo box con las cámaras disponibles
-        self.setup_camera_combobox()
+        # self.setup_camera_combobox()
+        self.comboBox_camara.addItems(["0", "1", "2"])
+        # self.setup_camera_combobox()
         self.comboBox_camara.currentIndexChanged.connect(self.change_camera)
         
         # Iniciar la cámara
@@ -895,12 +923,12 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 event.accept()
         if event.globalPos().y() <= 5 or event.globalPos().x() <= 5:
             self.showMaximized()
-            self.btn_max.hide()
-            self.btn_normal.show()
+            # self.btn_max.hide()
+            # self.btn_normal.show()
         else:
             self.showNormal()
-            self.btn_normal.hide()
-            self.btn_max.show()
+            # self.btn_normal.hide()
+            # self.btn_max.show()
 
     # Metodo para leer los puertos y seleccionar la velocidad de los datos
     def read_ports(self):
@@ -961,7 +989,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         if index >= 0:
             camera_index = self.comboBox_camara.itemData(index)
             if camera_index != -1:  # -1 sería el caso "No hay cámaras"
-                self.camera_thread.set_camera(camera_index)
+                try:
+                    self.camera_thread.set_camera(camera_index)
+                except Exception as e:
+                    print(f"Error al cambiar la cámara: {e}")
     
     def update_camera_view(self, pixmap):
         """Actualiza el QLabel con el frame de la cámara."""

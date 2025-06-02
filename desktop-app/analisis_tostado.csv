@@ -1,0 +1,26 @@
+﻿,min,mean,max,std,Valor
+Temperatura_1,71.0,157.5,275.0,40.83,
+Temperatura_2,133.0,165.07,241.0,19.23,
+RoR,-137.0,-1.77,42.0,20.3,
+Duración total (s),,,,,1927.0
+Pico RoR (°C/min),,,,,42.0
+Tiempo pico RoR,,,,,2025-04-30 12:45:26
+Correlación T1 vs T2,,,,,0.88
+Área bajo RoR,,,,,-3514.0
+Uniformidad ΔT<2°C (%),,,,,3.63
+Max ΔT (°C),,,,,77.0
+Tiempo ΔT máximo,,,,,2025-04-30 12:14:39
+Slope media T1,,,,,-3.02
+Slope media T2,,,,,-1.28
+t a 150°C,,,,,2025-04-30 12:13:24
+t a 170°C,,,,,2025-04-30 12:13:24
+t a 180°C,,,,,2025-04-30 12:13:24
+t a 200°C,,,,,2025-04-30 12:13:24
+Fase secado (s),,,,,0.0
+Fase Maillard (s),,,,,0.0
+Dev Time (s),,,,,5.0
+Dev %,,,,,0.26
+First crack,,,,,2025-04-30 12:45:06
+Second crack,,,,,
+Lag entre sondas (s),,,,,0.0
+Cruces >150°C,,,,,227

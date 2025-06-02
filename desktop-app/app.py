@@ -537,6 +537,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # self.change_button_text(self.btn_guardar, "Guardando...")
         # time.sleep(5)
         self.create_end_csv()
+        self.create_graph_for_tostado()
         self.change_button_text(self.btn_guardar, "Guardado")
 
 
@@ -656,6 +657,28 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         humedad = self.line_hum.text()
         return humedad
+    
+    def create_graph_for_tostado(self):
+        """
+        Metodo para crear la grafica de tostado
+        Se crea una arcvhivo .png con la grafica de tostado con el mismo nombre que el archivo CSV
+        Solo en la etapa 3 (Tostado)
+        """
+        # Crear la grafica de tostado
+        plt = pg.plot(title="Grafica de Tostado")
+        plt.setLabel('left', 'Temperatura (°C)')
+        plt.setLabel('bottom', 'Tiempo (s)')
+        plt.addLegend()
+
+        # Agregar las curvas
+        plt.plot(self.t1_x, self.t1_y, pen=pg.mkPen('#FF0000', width=2), name='Temperatura 1')
+        plt.plot(self.t2_x, self.t2_y, pen=pg.mkPen('#00FF00', width=2), name='Temperatura 2')
+        plt.plot(self.r1_x, self.r1_y, pen=pg.mkPen('#0000FF', width=2), name='RoR')
+
+        # Guardar la grafica como imagen
+        image_file = self.file_name.replace('.csv', '.png')
+        plt.save(image_file)
+        print(f"Grafica guardada como {image_file}")
     
 
     def create_end_csv(self):

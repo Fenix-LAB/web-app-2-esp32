@@ -1065,25 +1065,37 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         key_points = {}
         min_idx = df['T1_Grano'].idxmin()
         t_inicio = df.loc[min_idx, 'Time_minutes']
-        try:
-            secado_end = df[(df.index > min_idx) & (df['T1_Grano'] >= 150)].iloc[0]
+
+        # Fase de secado (100°C a 150°C)
+        secado_end = df[(df.index > min_idx) & (df['T1_Grano'] >= 150)]
+        if not secado_end.empty:
+            sec_end_row = secado_end.iloc[0]
             key_points['Secado'] = {
                 'Inicio': t_inicio,
-                'Fin': secado_end['Time_minutes'],
-                'Duración': secado_end['Time_minutes'] - t_inicio
+                'Fin': sec_end_row['Time_minutes'],
+                'Duración': sec_end_row['Time_minutes'] - t_inicio
             }
-        except:
+        else:
             key_points['Secado'] = {'Inicio': t_inicio, 'Fin': t_inicio, 'Duración': 0}
 
-        try:
-            maillard_end = df[(df.index > secado_end.name) & (df['T1_Grano'] >= 180)].iloc[0]
-            key_points['Maillard'] = {
-                'Inicio': secado_end['Time_minutes'],
-                'Fin': maillard_end['Time_minutes'],
-                'Duración': maillard_end['Time_minutes'] - secado_end['Time_minutes']
-            }
-        except:
-            key_points['Maillard'] = {'Inicio': secado_end['Time_minutes'], 'Fin': secado_end['Time_minutes'], 'Duración': 0}
+        # Fase de Maillard (150°C a 180°C)
+        if not secado_end.empty:
+            maillard_end = df[(df.index > secado_end.index[0]) & (df['T1_Grano'] >= 180)]
+            if not maillard_end.empty:
+                mai_end_row = maillard_end.iloc[0]
+                key_points['Maillard'] = {
+                    'Inicio': sec_end_row['Time_minutes'],
+                    'Fin': mai_end_row['Time_minutes'],
+                    'Duración': mai_end_row['Time_minutes'] - sec_end_row['Time_minutes']
+                }
+            else:
+                key_points['Maillard'] = {
+                    'Inicio': sec_end_row['Time_minutes'],
+                    'Fin': sec_end_row['Time_minutes'],
+                    'Duración': 0
+                }
+        else:
+            key_points['Maillard'] = {'Inicio': t_inicio, 'Fin': t_inicio, 'Duración': 0}
 
         return key_points
 
@@ -1091,7 +1103,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         key_points = {}
         key_points['Tiempo Total'] = df['Time_minutes'].iloc[-1]
 
-        # Primer crack entre 190 y 205 °C
+        # Primer crack (T1 entre 190 y 205 y RoR más alto)
         crack_df = df[(df['T1_Grano'] >= 190) & (df['T1_Grano'] <= 205)]
         if not crack_df.empty:
             crack_idx = crack_df['RoR'].idxmax()
@@ -1103,7 +1115,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 'es_RoR': False
             }
 
-        # Pico del RoR
+        # Pico RoR
         ror_peak_idx = df['RoR'].idxmax()
         key_points['Pico RoR'] = {
             'Tiempo': df.loc[ror_peak_idx, 'Time_minutes'],
@@ -1112,20 +1124,22 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             'es_RoR': True
         }
 
-        # Tiempos clave de T1
+        # Temperaturas específicas alcanzadas
         min_idx = df['T1_Grano'].idxmin()
         for temp in [150, 170, 180, 200]:
-            try:
-                idx = df[(df.index > min_idx) & (df['T1_Grano'] > temp)].index[0]
+            subset = df[(df.index > min_idx) & (df['T1_Grano'] > temp)]
+            if not subset.empty:
+                idx = subset.index[0]
                 key_points[f'T1 alcanza {temp}°C'] = {
                     'Tiempo': df.loc[idx, 'Time_minutes'],
                     'T1': df.loc[idx, 'T1_Grano'],
                     'es_RoR': False
                 }
-            except:
+            else:
                 key_points[f'T1 alcanza {temp}°C'] = {'Tiempo': 0, 'T1': 0, 'es_RoR': False}
 
         key_points['Correlación T1-T2'] = df['T1_Grano'].corr(df['T2_Tambor'])
+
         return key_points
 
     def analyze_rgb(self, df):

@@ -4,19 +4,21 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import sys
 
+# Estilo de las gráficas
 plt.style.use('default')
 plt.rcParams['figure.figsize'] = [12, 8]
 plt.rcParams['font.size'] = 12
 plt.rcParams['axes.grid'] = True
 plt.rcParams['grid.alpha'] = 0.3
 
-# Verifica que el CSV tenga las columnas necesarias
+# Verifica que todas las columnas requeridas estén presentes
 def validate_columns(df, required):
     for col in required:
         if col not in df.columns:
             print(f"❌ ERROR: Falta la columna requerida: '{col}'")
             sys.exit(1)
 
+# Carga y preprocesamiento del archivo CSV
 def load_and_process_data(filepath):
     df = pd.read_csv(filepath, skiprows=1)
     validate_columns(df, ['Fecha', 'Hora', 'Etapa', 'Temperatura_1', 'Temperatura_2', 'R', 'G', 'B'])
@@ -25,43 +27,59 @@ def load_and_process_data(filepath):
     df['Datetime'] = pd.to_datetime(df['Fecha'] + ' ' + df['Hora'], format="%Y-%m-%d %H:%M:%S", errors='coerce')
     df = df.dropna(subset=['Datetime'])
     df = df[df['Etapa'] == 'Tostado'].copy()
+
     df['Time_seconds'] = (df['Datetime'] - df['Datetime'].iloc[0]).dt.total_seconds()
     df['Time_minutes'] = df['Time_seconds'] / 60
     df = df.rename(columns={'Temperatura_1': 'T1_Grano', 'Temperatura_2': 'T2_Tambor'})
     df['RoR'] = df['T1_Grano'].diff().rolling(window=10, min_periods=1).mean() * 60
+
     return df
 
+# Fases de secado y maillard
 def identify_phases(df):
     key_points = {}
     min_idx = df['T1_Grano'].idxmin()
     t_inicio = df.loc[min_idx, 'Time_minutes']
-    try:
-        secado_end = df[(df.index > min_idx) & (df['T1_Grano'] >= 150)].iloc[0]
+
+    # Fase de secado (100°C a 150°C)
+    secado_end = df[(df.index > min_idx) & (df['T1_Grano'] >= 150)]
+    if not secado_end.empty:
+        sec_end_row = secado_end.iloc[0]
         key_points['Secado'] = {
             'Inicio': t_inicio,
-            'Fin': secado_end['Time_minutes'],
-            'Duración': secado_end['Time_minutes'] - t_inicio
+            'Fin': sec_end_row['Time_minutes'],
+            'Duración': sec_end_row['Time_minutes'] - t_inicio
         }
-    except:
+    else:
         key_points['Secado'] = {'Inicio': t_inicio, 'Fin': t_inicio, 'Duración': 0}
 
-    try:
-        maillard_end = df[(df.index > secado_end.name) & (df['T1_Grano'] >= 180)].iloc[0]
-        key_points['Maillard'] = {
-            'Inicio': secado_end['Time_minutes'],
-            'Fin': maillard_end['Time_minutes'],
-            'Duración': maillard_end['Time_minutes'] - secado_end['Time_minutes']
-        }
-    except:
-        key_points['Maillard'] = {'Inicio': secado_end['Time_minutes'], 'Fin': secado_end['Time_minutes'], 'Duración': 0}
+    # Fase de Maillard (150°C a 180°C)
+    if not secado_end.empty:
+        maillard_end = df[(df.index > secado_end.index[0]) & (df['T1_Grano'] >= 180)]
+        if not maillard_end.empty:
+            mai_end_row = maillard_end.iloc[0]
+            key_points['Maillard'] = {
+                'Inicio': sec_end_row['Time_minutes'],
+                'Fin': mai_end_row['Time_minutes'],
+                'Duración': mai_end_row['Time_minutes'] - sec_end_row['Time_minutes']
+            }
+        else:
+            key_points['Maillard'] = {
+                'Inicio': sec_end_row['Time_minutes'],
+                'Fin': sec_end_row['Time_minutes'],
+                'Duración': 0
+            }
+    else:
+        key_points['Maillard'] = {'Inicio': t_inicio, 'Fin': t_inicio, 'Duración': 0}
 
     return key_points
 
+# Eventos clave del perfil
 def identify_key_events(df):
     key_points = {}
     key_points['Tiempo Total'] = df['Time_minutes'].iloc[-1]
 
-    # Primer crack entre 190 y 205 °C
+    # Primer crack (T1 entre 190 y 205 y RoR más alto)
     crack_df = df[(df['T1_Grano'] >= 190) & (df['T1_Grano'] <= 205)]
     if not crack_df.empty:
         crack_idx = crack_df['RoR'].idxmax()
@@ -73,7 +91,7 @@ def identify_key_events(df):
             'es_RoR': False
         }
 
-    # Pico del RoR
+    # Pico RoR
     ror_peak_idx = df['RoR'].idxmax()
     key_points['Pico RoR'] = {
         'Tiempo': df.loc[ror_peak_idx, 'Time_minutes'],
@@ -82,22 +100,25 @@ def identify_key_events(df):
         'es_RoR': True
     }
 
-    # Tiempos clave de T1
+    # Temperaturas específicas alcanzadas
     min_idx = df['T1_Grano'].idxmin()
     for temp in [150, 170, 180, 200]:
-        try:
-            idx = df[(df.index > min_idx) & (df['T1_Grano'] > temp)].index[0]
+        subset = df[(df.index > min_idx) & (df['T1_Grano'] > temp)]
+        if not subset.empty:
+            idx = subset.index[0]
             key_points[f'T1 alcanza {temp}°C'] = {
                 'Tiempo': df.loc[idx, 'Time_minutes'],
                 'T1': df.loc[idx, 'T1_Grano'],
                 'es_RoR': False
             }
-        except:
+        else:
             key_points[f'T1 alcanza {temp}°C'] = {'Tiempo': 0, 'T1': 0, 'es_RoR': False}
 
     key_points['Correlación T1-T2'] = df['T1_Grano'].corr(df['T2_Tambor'])
+
     return key_points
 
+# Análisis de RGB para identificar cambios de color
 def analyze_rgb(df):
     df['Luminosidad'] = df[['R', 'G', 'B']].mean(axis=1)
     df['Cambio_RGB'] = df['Luminosidad'].diff().abs()
@@ -111,6 +132,7 @@ def analyze_rgb(df):
         }
     }
 
+# Creación del PDF con gráfica y reporte
 def create_pdf_report(df, eventos, fases, rgb, filename="reporte_tostado_final.pdf"):
     with PdfPages(filename) as pdf:
         fig, ax1 = plt.subplots()
@@ -168,6 +190,7 @@ def create_pdf_report(df, eventos, fases, rgb, filename="reporte_tostado_final.p
         lines.append(f"Luminosidad: {rgb_ev['Luminosidad']:.2f}")
         lines.append(f"RGB: {rgb_ev['RGB']}")
 
+        # Paginación en caso de texto largo
         for i in range(0, len(lines), 30):
             fig, ax = plt.subplots(figsize=(11, 8))
             ax.axis('off')
@@ -177,6 +200,7 @@ def create_pdf_report(df, eventos, fases, rgb, filename="reporte_tostado_final.p
 
         print(f"✅ PDF generado como: {filename}")
 
+# Función principal
 def main(filepath):
     df = load_and_process_data(filepath)
     fases = identify_phases(df)
@@ -184,5 +208,6 @@ def main(filepath):
     rgb = analyze_rgb(df)
     create_pdf_report(df, eventos, fases, rgb)
 
+# Llamada al script (ajusta el nombre según tu archivo CSV)
 if __name__ == "__main__":
-    main("data_2025-04-30_12-50-28.csv")  # Cambia esto por el nombre correcto de tu archivo .csv
+    main("data_2025-06-03_18-22-08.csv")

@@ -13,6 +13,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import sys
+import os
+import shutil
 
 from PyQt5.QtCore import QThread, pyqtSignal, QDateTime
 
@@ -547,11 +549,42 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         eventos = self.identify_key_events(df)
         rgb = self.analyze_rgb(df)
         self.create_pdf_report(df, eventos, fases, rgb)
+
+        self.move_to_folder(f"Analisis_Cafe_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}")
         # self.create_graph_for_tostado()
         self.change_button_text(self.btn_guardar, "Guardado")
 
 
         self.disable_save_button()
+
+    def move_to_folder(self, folder):
+        """
+        Metodo para mover el archivo CSV y el pdf a una carpeta especifica
+        """
+        
+
+        # Verifica si la carpeta existe, si no, la crea
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+
+        # Mueve el archivo CSV
+        csv_file_path = self.file_name
+        if os.path.exists(csv_file_path):
+            shutil.move(csv_file_path, os.path.join(folder, os.path.basename(csv_file_path)))
+
+        # Mueve el archivo PDF
+        pdf_file_path = self.file_name.replace('.csv', '.pdf')
+        if os.path.exists(pdf_file_path):
+            shutil.move(pdf_file_path, os.path.join(folder, os.path.basename(pdf_file_path)))
+
+        # Borra los archivos csv y pdf originales si existen
+        if os.path.exists(csv_file_path):
+            os.remove(csv_file_path)
+
+        if os.path.exists(pdf_file_path):
+            os.remove(pdf_file_path)
+
+        print(f"Archivos movidos a {folder}")
 
     def reset_all(self):
         """

@@ -548,7 +548,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         fases = self.identify_phases(df)
         eventos = self.identify_key_events(df)
         rgb = self.analyze_rgb(df)
-        self.create_pdf_report(df, eventos, fases, rgb)
+        self.create_pdf_report(df, eventos, fases, rgb, self.file_name.replace('.csv', '.pdf'))
 
         self.move_to_folder(f"Analisis_Cafe_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}")
         # self.create_graph_for_tostado()
